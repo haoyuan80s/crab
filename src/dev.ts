@@ -22,10 +22,10 @@ export const mockPosts: PostInfo[] = [
         title: "中国的\"国库\"竟然不止一个? 美国的国库竟然...",
         createdAtCommunityTime: new Date("2025-03-14T09:00:00"),
         thumbnailUrl: s3_path + "/crabcrabgo_test/kIo2BAubO6k.jpg",
-        lastTrackedTime: new Date("2025-03-14T10:00:00"),
+        lastCrawledTime: new Date("2025-03-14T10:00:00"),
         lastCommentTime: new Date("2025-03-14T10:00:00"),
         summary: "上期咱们聊了全球十大主权基金里面的6个。 今天咱们接着来揭晓更重磅的部分，来看一看全世界最大的三大国家主权基金~",
-        isActive: true
+        initIsActive: true
     },
     {
         id: "KosgUhdAL5w",
@@ -35,10 +35,10 @@ export const mockPosts: PostInfo[] = [
         title: "聊聊我是怎么赚钱的 | 我们的团队",
         createdAtCommunityTime: new Date("2025-02-04T09:00:00"),
         thumbnailUrl: s3_path + "/crabcrabgo_test/KosgUhdAL5w.jpg",
-        lastTrackedTime: new Date("2025-03-14T10:00:00"),
+        lastCrawledTime: new Date("2025-03-14T10:00:00"),
         lastCommentTime: new Date("2025-03-14T10:00:00"),
         summary: "你好奇吗？我是怎么赚钱的？ 我们的团队是怎么运作的？ 今天就来聊聊这个话题~",
-        isActive: true
+        initIsActive: true
     },
     {
         id: "31FpW6CMmYE",
@@ -48,10 +48,10 @@ export const mockPosts: PostInfo[] = [
         title: "全球最有钱的政府们是怎么投资的？",
         createdAtCommunityTime: new Date("2025-03-02T09:00:00"),
         thumbnailUrl: s3_path + "/crabcrabgo_test/31FpW6CMmYE.jpg",
-        lastTrackedTime: new Date("2025-03-14T10:00:00"),
+        lastCrawledTime: new Date("2025-03-14T10:00:00"),
         lastCommentTime: new Date("2025-03-14T10:00:00"),
         summary: "朋友们，咱们今天来深度颇析一下，全世界最有钱的一些政府，它们是怎么管理自己的钱袋子的。全球十大主权基金，它们都是哪来的那么多钱？各自是怎么管理这动辄几千亿、上万亿美元的财富的？背后又有什么投资逻辑~",
-        isActive: true
+        initIsActive: true
     },
     {
         id: "4hBpLHqBSOg",
@@ -61,10 +61,10 @@ export const mockPosts: PostInfo[] = [
         title: "一口气了解12万亿化债和中国的财政体系",
         createdAtCommunityTime: new Date("2025-03-02T09:00:00"),
         thumbnailUrl: s3_path + "/crabcrabgo_test/4hBpLHqBSOg.jpg",
-        lastTrackedTime: new Date("2025-03-14T10:00:00"),
+        lastCrawledTime: new Date("2025-03-14T10:00:00"),
         lastCommentTime: new Date("2025-03-14T10:00:00"),
         summary: "你好奇吗？中国的财政体系是怎么样的？ 12万亿化债又是怎么回事？ 今天就来聊聊这个话题~",
-        isActive: true
+        initIsActive: true
     },
     {
         id: "6SDtf0M3fRo",
@@ -74,10 +74,10 @@ export const mockPosts: PostInfo[] = [
         title: "Transformers without Normalization (Paper Walkthrough)",
         createdAtCommunityTime: new Date("2025-03-14T09:00:00"),
         thumbnailUrl: s3_path + "/crabcrabgo_test/6SDtf0M3fRo.jpg",
-        lastTrackedTime: new Date("2025-03-14T10:00:00"),
+        lastCrawledTime: new Date("2025-03-14T10:00:00"),
         lastCommentTime: new Date("2025-03-14T10:00:00"),
         summary: "Transformers can work without normalization by using Dynamic Tanh (DyT), an element-wise operation that mimics LayerNorm’s tanh-like behavior. DyT removes the need for normalization while matching or improving performance—boosting Vision Transformer accuracy by up to 0.5% on ImageNet with no hyperparameter tuning.",
-        isActive: false
+        initIsActive: false
     },
     {
         id: "oZozNrtbg-o",
@@ -87,10 +87,10 @@ export const mockPosts: PostInfo[] = [
         title: "Block Diffusion: Interpolating Between Autoregressive and Diffusion Language Models (ICLR 2025)",
         createdAtCommunityTime: new Date("2025-03-13T09:00:00"),
         thumbnailUrl: s3_path + "/crabcrabgo_test/oZozNrtbg-o.jpg",
-        lastTrackedTime: new Date("2025-03-14T10:00:00"),
+        lastCrawledTime: new Date("2025-03-14T10:00:00"),
         lastCommentTime: new Date("2025-03-14T10:00:00"),
         summary: "This study introduces Block Diffusion Language Models (BD3-LMs), which blend discrete diffusion with autoregressive methods. Unlike traditional diffusion models that are fixed-length and computationally heavy, BD3-LMs support flexible-length text generation and improve inference efficiency using KV caching and parallel token sampling. BD3-LMs generate sequences up to 10 times longer than previous discrete diffusion models while maintaining improved perplexity scores—achieving 28.23 PPL compared to 31.78 PPL for earlier approaches.",
-        isActive: true
+        initIsActive: true
     },
 ]
 
@@ -124,8 +124,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u670b\u53cb\u4eec\u4e45\u7b49\u4e86\u54c8\uff0c\u4e0b\u671f\u7ec8\u4e8e\u6765\u4e86\uff0c\u8fd8\u66f4\u7cbe\u5f69\u54e6\u6709\u6ca1\u6709\ud83d\ude02\u611f\u8c22moomoo\u5bf9\u89c6\u9891\u7684\u652f\u6301\u3002\u4e00\u7ad9\u5f0f\u6295\u8d44\u5168\u7403\u8d44\u4ea7\u7528\u5bcc\u9014 moomoo\uff0c\u5c0fLin\u4e13\u5c5e\u5168\u7403\u72ec\u5bb6\u798f\u5229\uff0c\u82f1\u4f1f\u8fbe\u80a1\u7968\u514d\u8d39\u9001\uff1a<a href=\"https://start.moomoo.com/02NiDU\">https://start.moomoo.com/02NiDU</a><br>\u9999\u6e2f\u5730\u533a\uff1a<a href=\"https://start.futunn.com/01Tw1T\">https://start.futunn.com/01Tw1T</a><br>\u9886\u53d6\u9ad8\u6536\u76ca\u5b58\u94b1\u7075\u6d3b\u73b0\u91d1\u6536\u76ca\u8ba1\u5212\u5927\u793c\uff0c\u66f4\u6709\u60ca\u559c\u73b0\u91d1\u53ca\u514d\u8d39\u80a1\u7968\u5f00\u6237\u4f18\u60e0~",
         likeCount: 220,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -139,8 +139,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u54c7 \u8fd9\u671f\u592a\u68d2\u4e86",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: true,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: true,
         crawlId: "dklr3kd",
     },
     {
@@ -154,8 +154,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u65b0\u53d1\u578b\u5f88\u597d\u770b \u563b\u563b",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -169,8 +169,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u6562\u4e0d\u6562\u8bb2\u8fd9\u5341\u4e2a\u56fd\u5bb6\u57fa\u91d1\u54ea\u4e2a\u8d5a\u94b1\uff0c\u54ea\u4e2a\u8d54\u94b1\uff1f",
         likeCount: 0,
-        actions: [{ type: "Dislike", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Dislike", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -184,8 +184,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u7f8e\u56fd\u7684\u8d38\u6613\u9006\u5dee\u662f\u7528\u7f8e\u5143\u7684\u5347\u964d\u5229\u606f\u6536\u5272\u5168\u7403\u7684\u5de5\u5177",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -199,8 +199,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u8fd9\u4e48\u4e00\u770b\u52a0\u62ff\u5927\u8fd9\u4e2a\u56fd\u5bb6\u771f\u662f\u592a\u70c2\u4e86",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -214,8 +214,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u4ee5\u540e\u6240\u6709\u8d35\u65cf\u7684\u5b69\u5b50\u5fc5\u987b\u81ea\u8d39\u5230 \u56db\u5ddd\u8230\u961f\u670d\u5f79\u4e94\u5e74 \ud83d\ude02\u2764\u2764\u2764\u61c2\u5417 \u81ea\u8d39\u54c8 \u5426\u5219 \u5f53\u53bf\u957f\u90fd\u6ca1\u8d44\u683c\u54e6\ud83d\ude02\u2764\u2764\u2764\ud83c\udf89\ud83c\udf89\ud83c\udf89\ud83c\udf89\u4f60\u4fe1\u4e0d\u4fe1\u5462",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -229,8 +229,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u4e2d\u4e1c\u597d\u50cf\u62c6\u8fc1\u6237 \u7a81\u7136\u70b8\u5bcc\u9700\u8981\u4fdd\u6301\u3002\u65b0\u52a0\u5761\u9999\u6e2f\u662f\u7cbe\u82f1\u9636\u7ea7 \u9700\u8981\u4e00\u6b65\u4e00\u4e2a\u811a\u5370\u79ef\u7d2f\u8d22\u5bcc \u7ef4\u6301\u4e16\u4e16\u4ee3\u4ee3\u4e2d\u4ea7",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -244,8 +244,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u592a\u68d2\u4e86\uff0c\u6bcf\u6b21\u770b\uff0c\u6bcf\u6b21\u8b9a\u5606\uff01\u8acb\u554f\u53e6\u4e00\u96c6\u53eb\u4ec0\u4e48\uff1f\u6211\u5f88\u6709\u8208\u8da3\u641c\u5c0b\u4f86\u770b. \u8b1d\u8b1d \ud83d\ude4f",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: true,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: true,
         crawlId: "dklr3kd",
     },
     {
@@ -259,8 +259,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u7b2c\u4e00\u540d\u900f\u660e \u4eba\u6c11\u62e5\u6709 \u7b2c\u4e8c\u540d \u7b2c\u4e09\u540d\u4e0d\u900f\u660e \u4f1f\u5927\u7684\u515a\u62e5\u6709 \u55ef\u55ef\u55ef \u6ca1\u6bdb\u75c5 \u4e00\u70b9\u6bdb\u75c5\u6ca1\u6709",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -274,8 +274,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u559c\u6c14\u6d0b\u6d0b\u7684\u6bdb\u8863 \u7a7f\u5f97\u597d\u597d\u770b",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -289,8 +289,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u8fd9\u4e48\u65e0\u79c1\uff0c\u5389\u5bb3",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -304,8 +304,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "Thanks and keep on",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -319,8 +319,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "I am currently working on exporting short plays overseas and learning from Xiaolin, hoping to make some money as well.",
         likeCount: 1,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -334,8 +334,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u53ef\u7231\u634f",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -349,8 +349,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u2764",
         likeCount: 1,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -364,8 +364,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u5c0a\u9f99 \u83e0\u83dc<br>\u767e\u5343\u4e07.\u897f\u54e6\u4e48",
         likeCount: 0,
-        actions: [{ type: "Reply", desc: "Reply reply hahaha" }],
-        isSubmitted: false,
+        initActions: [{ type: "Reply", desc: "Reply reply hahaha" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -379,8 +379,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u68d2\u68d2\u7684\uff0c\u652f\u6301\u4f60",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -394,8 +394,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u591a\u8bb2IPo\u516c\u53f8 \u871c\u96ea\u975e\u5e38\u597d\ud83d\udc4d \u53ef\u60dc\u6211\u770b\u665a\u4e86",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -409,8 +409,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u575a\u6301\u81ea\u5df1\u7684\u672c\u5fc3",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -424,8 +424,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\ud83d\ude39\ud83d\ude39\ud83d\ude39\ud83d\ude39\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4f\ud83d\udc4fwonderful excellent!!",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -439,8 +439,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u675c\u62dc\u7684\u5f71\u7247\u600e\u9ebc\u6c92\u4e86",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -454,8 +454,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "14\u5206\u949f\u7684\u54ea\u4e2a\u5e7f\u544a\u7b11\u6b7b\u6211\u4e86\u3002\u4eff\u4f5b\u518d\u8bf4\uff0c\u7f3a\u94b1\u627e\u6211\u3002\u6211\u4eba\u50bb\u94b1\u591a\u3002",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -469,8 +469,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u6bcf\u6b21\u6211\u90fd\u8981slow down speed\u3002\u4e0d\u7136\u592a\u5feb\u4e86 \u54c8\u54c8",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: true,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: true,
         crawlId: "dklr3kd",
     },
     {
@@ -484,8 +484,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u9999\u6e2f\u9019\u9ebc\u53b2\u5bb3, \u53ef\u4ee5\u5728\u5730\u7403\u4e0a\u8e8b\u8eab\u8207\u77f3\u6cb9\u5927\u4f6c\u4e00\u9f4a\u73a9~",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -499,8 +499,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u9aee\u578b\u5514\u540c\u5497\u8b8a\u5f97\u66f4\u6f02\u4eae",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -514,8 +514,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "<a href=\"https://www.youtube.com/watch?v=31FpW6CMmYE&amp;t=296\">4:56</a> HKD, not \u201cHDK\u201d.",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -529,8 +529,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u7f8e\u56fd\u7684\u94b1\u662f\u80cc\u540e\u8d22\u9600\u7684\uff0c\u4e0d\u662f\u7f8e\u56fd\u7684\u3002",
         likeCount: 0,
-        actions: [{ type: "Reply", desc: "Reply reply hahaha" }],
-        isSubmitted: false,
+        initActions: [{ type: "Reply", desc: "Reply reply hahaha" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -544,8 +544,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u592a\u7a81\u7136\u4e86\u5427  \u65b0\u5f71\u7247\u9084\u6c92\u770b\u5b8c\u5c31\u4e0d\u898b\u4e86\ud83d\ude05",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -559,8 +559,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u76f4\u63a5\u4e0b\u67b6\u662f\u600e\u6a23\uff1f",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -574,8 +574,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u83e0\u83dc<br>\u767e\u5343\u4e07.\u897f\u54e6\u4e48",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -589,8 +589,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u5c0f\u6797\u662f\u628a\u80fd\u8bf4\u7684\u90fd\u8bf4\u4e86\uff0c\u4e0d\u80fd\u8bf4\u7684\u4e00\u70b9\u4e5f\u6ca1\u8bf4\ud83d\ude02\ud83d\ude02\ud83d\ude02",
         likeCount: 2,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -604,8 +604,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "x\u4e0b\u4e00\u6b65\u5927\u5bb6\u9700\u8981\u8bb0\u4f4f~\u4e0d\u7ba1\u662f\u4ec0\u4e48\u503a\u52a1\u9700\u8981\u6709\u4eba\u5206\u62c5\u3002\u91cd\u70b9\u53ea\u8bb2\u4e00\u6b21<a href=\"UCkszU2WH9gy1mb0dV-11UJg/ygF1XpGUMMjk8gSDrI2wCx\"></a>",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -619,8 +619,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u89c6\u9891\u662f\u4e0d\u662f\u5220\u51cf\u4e86\u4e00\u90e8\u5206\uff0c\u8bb0\u5f97\u4e00\u5f00\u59cb\u770b\u597d\u50cf\u670930\u591a\u5206\u949f",
         likeCount: 0,
-        actions: [{ type: "Dislike", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Dislike", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -634,8 +634,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "12\uff0c\u4e00\u770b\u5c31\u662f\u80e1\u8bf4\u516b\u9053",
         likeCount: 0,
-        actions: [{ type: "Reply", desc: "Reply reply hahaha" }],
-        isSubmitted: false,
+        initActions: [{ type: "Reply", desc: "Reply reply hahaha" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -649,8 +649,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u4e2d\u56fd\u7684\u589e\u503c\u7a0e\u7c7b\u4f3c\u4e8e\u52a0\u62ff\u5927\u548c\u7f8e\u56fd\u7684\u6d88\u8d39\u7a0e\uff0c\u8fd9\u4e2a\u7a0e\u65e2\u6709\u4f01\u4e1a\u4ea4\u7684\uff0c\u4e5f\u6709\u4e2a\u4eba\u4ea4\u7684\uff0c\u662f\u4e00\u79cd\u6d41\u8f6c\u7a0e\uff0c\u4e2d\u95f4\u6d88\u8d39\u8005\uff08\u4e3b\u8981\u662f\u4f01\u4e1a\uff09\u662f\u53ef\u4ee5\u62b5\u6263\u7684\uff0c\u57fa\u672c\u843d\u5728\u6700\u7ec8\u6d88\u8d39\u8005\u8eab\u4e0a",
         likeCount: 0,
-        actions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
-        isSubmitted: false,
+        initActions: [{ type: "Like", desc: "" }, { type: "Reply", desc: "hoho haha hehe" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -664,8 +664,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u5c0fLin\uff0c\u53ef\u4ee5\u8bb2\u8bb2\u5fb7\u56fd\u65b0\u603b\u7406\u65b0\u9881\u5e03\u7684\u8d22\u653f\u653f\u7b56\u7684\u5229\u5f0a\u5417",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -679,8 +679,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u5c0flin\u8b1b\u8ff0\u6e05\u6670\u5e7d\u9ed8\uff0c\u81ea\u88fd\u8868\u60c5\u5305\u4e5f\u5f88\u70d8\u6258\u5fc3\u60c5\uff0c\u535a\u5f97\u5927\u5bb6\u6703\u5fc3\u4e00\u7b11",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -694,8 +694,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u5e94\u8be5\u8bb2\u771f\u5b9e  \u53ca\u539f\u56e0   \u89e3\u51b3\u63aa\u65bd",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -709,8 +709,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "\u4e2a\u4eba\u6240\u5f97\u7a0e\u5c11\u8bf4\u660e\u56fd\u4eba\u6536\u5165\u5f88\u4f4e\u554a",
         likeCount: 0,
-        actions: [{ type: "Delete", desc: "" }],
-        isSubmitted: false,
+        initActions: [{ type: "Delete", desc: "" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -724,8 +724,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "Check out our brand-new \u201cSplash Board\u201d <a href=\"https://ribbitribbit.co/board\">https://RibbitRibbit.co/board</a> to see which papers are making waves this month! Love a paper\ud83d\udc9a? Vote for it now \u2b06. Once it reaches 10 votes, we\u2019ll hop right into a deep dive for you! \ud83d\udc20",
         likeCount: 0,
-        actions: [{ type: "Reply", desc: "Reply reply hahaha" }],
-        isSubmitted: false,
+        initActions: [{ type: "Reply", desc: "Reply reply hahaha" }],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
     {
@@ -739,8 +739,8 @@ export const mockComments: CommentWithAction[] = [
         parentId: null,
         content: "Check out our brand-new \u201cSplash Board\u201d <a href=\"https://ribbitribbit.co/board\">https://RibbitRibbit.co/board</a> to see which papers are making waves this month! Love a paper\ud83d\udc9a? Vote for it now \u2b06. Once it reaches 10 votes, we\u2019ll hop right into a deep dive for you! \ud83d\udc20",
         likeCount: 0,
-        actions: [],
-        isSubmitted: false,
+        initActions: [],
+        initIsSubmitted: false,
         crawlId: "dklr3kd",
     },
 ]

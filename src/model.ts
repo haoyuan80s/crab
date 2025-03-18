@@ -12,12 +12,13 @@ export type PostInfo = {
     title: string;
     createdAtCommunityTime: Date;
     thumbnailUrl: string;
-    lastTrackedTime: Date;
+    lastCrawledTime: Date;
     lastCommentTime: Date;
     summary: string;
 
-    // Users can deactivate a post. When a post is deactivated, it won't be crawled.
-    isActive: boolean;
+    // This is the initial active status of the post. User can edit upon, and 
+    // thus do not use it outside of the initial setup.
+    initIsActive: boolean;
 };
 
 // In YouTube, a channel is a channel
@@ -57,6 +58,11 @@ export type CommentWithAction = {
     parentId: string | null;
     content: string;
     likeCount: number;
-    actions: CommentAction[];
-    isSubmitted: boolean;
+
+    // This is the initial actions of the comment passed over from the backend. 
+    // User can edit upon, and thus do not use it outside of the initial setup.
+    initActions: CommentAction[];
+    // This is the initial status when passed over from the backend.
+    // User can edit upon, and thus do not use it outside of the initial setup.
+    initIsSubmitted: boolean;
 }

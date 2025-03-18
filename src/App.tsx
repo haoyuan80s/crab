@@ -77,7 +77,7 @@ export default function App() {
   function ChannelListItem(prop: { post: PostInfo }) {
     return (
       <div
-        class={`px-2.5 rounded-md cursor-pointer ${currentPostId() == prop.post.id ? "bg-crab-green" : "hover:bg-grey-custom1"} ${prop.post.isActive ? "" : "opacity-50"}`}
+        class={`px-2.5 rounded-md cursor-pointer ${currentPostId() == prop.post.id ? "bg-crab-green" : "hover:bg-grey-custom1"} ${prop.post.initIsActive ? "" : "opacity-50"}`}
         onclick={() => setCurrentPostId(prop.post.id)}
       >
         <div
@@ -94,7 +94,7 @@ export default function App() {
               <div class="flex pt-1">
                 <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-gray-400"}`}>Released {timeAgo(prop.post.createdAtCommunityTime)}</div>
                 <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-gray-400"} px-0.5`}>⋅</div>
-                <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-crab-orange"}`}> Tracked {timeAgo(prop.post.lastTrackedTime)}</div>
+                <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-crab-orange"}`}> Tracked {timeAgo(prop.post.lastCrawledTime)}</div>
               </div>
             </div>
           </div>

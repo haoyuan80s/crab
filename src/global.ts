@@ -58,7 +58,7 @@ createRoot(() => {
         console.log("[createEffect] Refreshing repliesStore based on commentsStore");
         const initialReplies: Record<string, string> = {};
         commentsStore.forEach((comment) => {
-            const reply = comment.actions.find((r) => r.type === "Reply");
+            const reply = comment.initActions.find((r) => r.type === "Reply");
             if (reply) {
                 initialReplies[comment.id] = reply.desc;
             }
@@ -72,7 +72,7 @@ createRoot(() => {
         const posts = postsResource();
         if (posts) {
             posts.forEach((post) => {
-                if (post.isActive) {
+                if (post.initIsActive) {
                     setUserWatchStore((prev) => ({ ...prev, activePostIds: [...prev.activePostIds, post.id] }));
                 } else {
                     setUserWatchStore((prev) => ({ ...prev, inactivePostIds: [...prev.inactivePostIds, post.id] }));
@@ -86,22 +86,22 @@ createRoot(() => {
 export const removeActionFrCommentsStore = (commentId: string, actionType: CommentActionType) => {
     setCommentsStore(
         (comment) => comment.id === commentId,
-        "actions",
-        (actions) => actions.filter((action) => action.type !== actionType)
+        "initActions",
+        (initActions) => initActions.filter((action) => action.type !== actionType)
     );
 };
 
 export const addActionToCommentsStore = (commentId: string, actionType: CommentActionType, desc: string) => {
     setCommentsStore(
         (comment) => comment.id === commentId,
-        "actions",
-        (actions) => [...actions, { type: actionType, desc: desc }] // Append new action
+        "initActions",
+        (initActions) => [...initActions, { type: actionType, desc: desc }] // Append new action
     );
 };
 
 export const getCommnentsOfActionType = (postId: string, actionType: CommentActionType): CommentWithAction[] => {
     return commentsStore.filter((comment) =>
-        comment.actions.some((action) => action.type === actionType && comment.postId === postId)
+        comment.initActions.some((action) => action.type === actionType && comment.postId === postId)
     );
 }
 
@@ -111,7 +111,7 @@ export const countCommentsOfActionTYpe = (postId: string, actionType: CommentAct
 
 export const getCommentsWithAnyAction = (postId: string): CommentWithAction[] => {
     return commentsStore.filter((comment) =>
-        comment.postId === postId && comment.actions.length > 0
+        comment.postId === postId && comment.initActions.length > 0
     );
 }
 
@@ -121,7 +121,7 @@ export const countCommentsWithAnyAction = (postId: string): number => {
 
 export const getCommentsWithNoAction = (postId: string): CommentWithAction[] => {
     return commentsStore.filter((comment) =>
-        comment.postId === postId && comment.actions.length === 0
+        comment.postId === postId && comment.initActions.length === 0
     );
 }
 
@@ -130,7 +130,7 @@ export const countCommentsWithNoAction = (postId: string): number => {
 }
 
 export const hasAction = (comment: CommentWithAction, actionType: CommentActionType): boolean => {
-    return comment.actions.some((action) => action.type === actionType);
+    return comment.initActions.some((action) => action.type === actionType);
 }
 
 export const removeFromRepliesStore = (commentId: string) => {

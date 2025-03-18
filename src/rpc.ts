@@ -4,8 +4,8 @@ import { ChannelInfo, CommentActionType, CommentWithAction, PostInfo } from "./m
 
 // <FLOW 1> Manage Watch List
 // Edit a post's watch status. If the post is not in the user's watch list, add it to the watch list and set its active status accordingly.
-export const userEditPostWatch = async (postId: string, isActive: boolean): Promise<void> => {
-    console.log("[userEditPostWatch] Editing post watch status: ", postId, isActive);
+export const userEditPostWatch = async (postId: string, initIsActive: boolean): Promise<void> => {
+    console.log("[userEditPostWatch] Editing post watch status: ", postId, initIsActive);
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve();
@@ -15,6 +15,19 @@ export const userEditPostWatch = async (postId: string, isActive: boolean): Prom
 // </FLOW 1>
 
 // <FLOW 2> User Visit Flow (When an AccountOwner opens the app)
+
+// Identify the last crawl ids for each active post.
+export const identifyLastCrawlIdsForActivePosts = async (): Promise<Record<string, string>> => {
+    console.log("[identifyLastCrawlIdsForActivePosts] Identifying last crawl ids for active posts...");
+
+    const postId2LastCrawlId: Record<string, string> = {};
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(postId2LastCrawlId);
+        }, 200);
+    });
+}
+
 export const fetchComments = async (): Promise<CommentWithAction[]> => {
     console.log("[fetchComments] Fetching from API...");
     return new Promise((resolve) => {

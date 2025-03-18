@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@theme {
+    --font-display: "Figtree", "sans-serif";
+    --font-figtree: "font-figtree";
+    --breakpoint-3xl: 120rem;
+    --color-avocado-100: oklch(0.99 0 0);
+    --color-avocado-200: oklch(0.98 0.04 113.22);
+    --color-avocado-300: oklch(0.94 0.11 115.03);
+    --color-avocado-400: oklch(0.92 0.19 114.08);
+    --color-avocado-500: oklch(0.84 0.18 117.33);
+    --color-avocado-600: oklch(0.53 0.12 118.34);
+    --color-grey-custom0: #FAFAFA;
+    --color-grey-custom1: #EBEBEB;
+    --color-grey-custom2: #D1D2D3;
+    --color-grey-custom3: #B6B8BA;
+    --color-grey-channel-text: #64686C;
+    --color-crab-orange: #E9743E;
+    --color-crab-orange-dark: #EDD3C8;
+    --color-crab-green: #26A59E;
+    --color-crab-green-light: #C4DFDE;
+    --color-crab-green-dark: #338C87;
+    --text-custom9: 9px;
+    --text-custom10: 10px;
+    --text-custom11: 11px;
+    --text-custom12: 12px;
+    --text-custom13: 13px;
+    --text-custom14: 14px;
+    --text-custom16: 16px;
+    --text-custom20: 20px;
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+    /* ... */
+}
+
+.font-figtree {
+    font-family: "Figtree", sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.web-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.web-scrollbar::-webkit-scrollbar-track {
+    background: #F2F2F7;
+    border-radius: 4px;
+}
+
+.web-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #D1D1D6;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.web-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #8E8E93;
+}
+
+@media (prefers-color-scheme: dark) {
+    .web-scrollbar::-webkit-scrollbar-track {
+        background: #1C1C1E;
+    }
+
+    .web-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #2E2E30;
+    }
+
+    /* Hover effect in dark mode */
+    .web-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #8E8E93;
+    }
+}
+
+.submit-button-format {
+    @apply w-15 h-15 rounded-full text-white bg-crab-green hover:bg-crab-green-dark leading-none cursor-pointer
+}
+
+.slide2confirm::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 48px;
+    /* Set the width */
+    height: 48px;
+    /* Set the height */
+    border-radius: 50%;
+    border: 2;
+    /* Make it a circle */
+    background: rgb(255, 255, 255);
+    /* Change the color */
+    cursor: pointer;
+}

@@ -1,7 +1,8 @@
 import { mockChannels, mockComments, mockPosts } from "./dev";
-import { ChannelInfo, CommentWithAction, PostInfo } from "./model";
+import { userWatchStore } from "./global";
+import { ChannelInfo, CommentActionType, CommentWithAction, PostInfo } from "./model";
 
-// <FLOW 1> Watching and Managing Posts
+// <FLOW 1> Manage Watch List
 // Edit a post's watch status. If the post is not in the user's watch list, add it to the watch list and set its active status accordingly.
 export const userEditPostWatch = async (postId: string, isActive: boolean): Promise<void> => {
     console.log("[userEditPostWatch] Editing post watch status: ", postId, isActive);
@@ -51,6 +52,8 @@ export const triggerRecrawl = async (): Promise<void> => {
     // Passing over the active post ids. Although server-side may also have this
     // information, UI likely has the most up-to-date information (in case the
     // user has just edited the post watch status and it hasn't reached the server).
+    const activePostIds = userWatchStore.activePostIds;
+    console.log("[triggerRecrawl] Active post ids: ", activePostIds);
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve();
@@ -60,5 +63,31 @@ export const triggerRecrawl = async (): Promise<void> => {
 // </FLOW 3>
 
 // <FLOW 4> Action Suggestion and Editing Flow (Once a crawl is completed...)
+// Edit or add an action to a comment.
+export const editAction = async (commentId: string, actionType: CommentActionType, desc: string): Promise<void> => {
+    console.log("[editAction] Editing action: ", commentId, actionType, desc);
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, 200);
+    });
+}
 
+export const deleteAction = async (commentId: string, actionType: CommentActionType): Promise<void> => {
+    console.log("[deleteAction] Deleting action: ", commentId, actionType);
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, 200);
+    });
+}
+
+export const submitCommentActions = async (commentId: string): Promise<void> => {
+    console.log("[submitCommentActions] Submitting actions for comment: ", commentId);
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, 200);
+    });
+}
 // </FLOW 4>

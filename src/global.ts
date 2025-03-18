@@ -1,5 +1,5 @@
 import { createStore } from "solid-js/store";
-import { CommentActionType, CommentWithAction, PostInfo, ChannelInfo } from "./model";
+import { CommentActionType, CommentWithAction, PostInfo, ChannelInfo, UserWatch } from "./model";
 import { createResource, createRoot } from "solid-js";
 import { fetchComments, fetchPosts, fetchChannels } from "./rpc";
 import { createEffect } from "solid-js";
@@ -31,11 +31,16 @@ export function getDateString(date: Date): string {
     return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+
 export const [commentsResource, { refetch: refetchComments }] = createResource(fetchComments);
 export const [postsResource, { refetch: refetchPosts }] = createResource(fetchPosts);
 export const [channelResource, { refetch: refetchChannels }] = createResource(fetchChannels);
 
 export const [commentsStore, setCommentsStore] = createStore<CommentWithAction[]>([]);
+export const [userWatchStore, setUserWatchStore] = createStore<UserWatch>({
+    activePostIds: [],
+    inactivePostIds: [],
+});
 
 // Manage reply text in textarea: comment_id => reply string.
 export const [repliesStore, setRepliesStore] = createStore<Record<string, string>>({});
@@ -60,6 +65,21 @@ createRoot(() => {
         });
         setRepliesStore(initialReplies);
         console.log("[createEffect] Refreshed repliesStore based on commentsStore");
+    });
+
+    createEffect(() => {
+        console.log("[createEffect] Refreshing userWatchStore based on postsResource...");
+        const posts = postsResource();
+        if (posts) {
+            posts.forEach((post) => {
+                if (post.isActive) {
+                    setUserWatchStore((prev) => ({ ...prev, activePostIds: [...prev.activePostIds, post.id] }));
+                } else {
+                    setUserWatchStore((prev) => ({ ...prev, inactivePostIds: [...prev.inactivePostIds, post.id] }));
+                }
+            });
+        }
+        console.log("[createEffect] Refreshed userWatchStore based on postsResource. Found ", userWatchStore.activePostIds.length, " active posts and ", userWatchStore.inactivePostIds.length, " inactive posts.");
     });
 });
 

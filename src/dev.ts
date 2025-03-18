@@ -115,6 +115,7 @@ export const mockComments: CommentWithAction[] = [
 
     {
         id: "UgwMsCwqipSLtK0I5tl4AaABAg",
+        communityCommentId: "UgwMsCwqipSLtK0I5tl4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@xiao_lin_shuo",
         authorThumbnailUrl: "https://yt3.ggpht.com/dDOuCyzkVBwGapJot3mAGqq1_2_sng7pgnPtkGF1uSmcleO4p6O4Ox6flFzwF7vYDiuNv2I_mA=s48-c-k-c0x00ffffff-no-rj",
@@ -129,6 +130,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgymJIz2aQri80BMqMR4AaABAg",
+        communityCommentId: "UgymJIz2aQri80BMqMR4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@weiw1028",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nBLBcqzFdQnQ5QfPlIZAiF_9IHb99T1gI3RLXd6cbqYtsA=s48-c-k-c0x00ffffff-no-rj",
@@ -143,6 +145,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgytdGJJ1Vut_wvbrvt4AaABAg",
+        communityCommentId: "UgytdGJJ1Vut_wvbrvt4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@paualmini",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_lOEX89iKrNNLDSUf_Z5FOUkV_8Q7oAeAvDdV30lqtTs7w=s48-c-k-c0x00ffffff-no-rj",
@@ -157,6 +160,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwJDLtMborZCTCYTER4AaABAg",
+        communityCommentId: "UgwJDLtMborZCTCYTER4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@zhengcao6529",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_mlIqm0dHdwGpxxst85aKUthIX2HNuRkYZQzrdx3HY=s48-c-k-c0x00ffffff-no-rj",
@@ -171,6 +175,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwPu8XtxR6YLzdqflx4AaABAg",
+        communityCommentId: "UgwPu8XtxR6YLzdqflx4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@QigangDing",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_k40RWE_g69humquYu6aIJoPrWWp7Nn4a9sSyNNOYknTPtbfVDnqabmGsWkidpaSBGY0Q=s48-c-k-c0x00ffffff-no-rj",
@@ -185,6 +190,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgyEHVQydQey7gqPhqp4AaABAg",
+        communityCommentId: "UgyEHVQydQey7gqPhqp4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@chaucer6107",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nlN2xoYhpqCLGuODUtZFd2X1dDAtiX7yqGpmzG2AFHCPQ=s48-c-k-c0x00ffffff-no-rj",
@@ -199,6 +205,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwD1itxWgL71aFPvJl4AaABAg",
+        communityCommentId: "UgwD1itxWgL71aFPvJl4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@sngnhbbxhh4834",
         authorThumbnailUrl: "https://yt3.ggpht.com/98pmqi8RsJbkmrwDVfIkeQnmLHizhocLffiP4bnY82VC_40pECgM2PuxruCUhvfvjVqUPW7j=s48-c-k-c0x00ffffff-no-rj",
@@ -213,6 +220,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "Ugyf8MS6zHCLl9WJpE14AaABAg",
+        communityCommentId: "Ugyf8MS6zHCLl9WJpE14AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@nieniedaily8389",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_kos2EsvyYZaZW_JMZfCI3Ozehw6S_6CBTtbAu_LQjZIbc=s48-c-k-c0x00ffffff-no-rj",
@@ -227,6 +235,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwjsWckDyEThvBjVXZ4AaABAg",
+        communityCommentId: "UgwjsWckDyEThvBjVXZ4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@JocelineChen-th9lc",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nkHMdD8-iph0EM_9XXOHFTX5yr1_08Pyl5RsRmTC8NcKJnWauEhfigEgk72JRwumN-OA=s48-c-k-c0x00ffffff-no-rj",
@@ -241,6 +250,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxMi2x3bE5nYPoYmBZ4AaABAg",
+        communityCommentId: "UgxMi2x3bE5nYPoYmBZ4AaABAg",
         postId: "kIo2BAubO6k",
         authorName: "@xuanye9259",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_msyD8C7MoBSBF9QRk0UbPWb3XCdFWb1eT0casFmL0=s48-c-k-c0x00ffffff-no-rj",
@@ -255,6 +265,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgyfCRENu3ame9JMVfd4AaABAg",
+        communityCommentId: "UgyfCRENu3ame9JMVfd4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@cmccpooh",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_lsgFtGCc2KzLfTQEWudR4rRU8arG8twTwKZ-k-jIo=s48-c-k-c0x00ffffff-no-rj",
@@ -269,6 +280,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxIawvCw5ja86TpgVx4AaABAg",
+        communityCommentId: "UgxIawvCw5ja86TpgVx4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@tongqilu2567",
         authorThumbnailUrl: "https://yt3.ggpht.com/X7uIgFN2VLaQDgSlNNUHNM7zzvrt4Giczl5k1hF83Am0Iy09EFLVV5N03_hDociCaixEdl96ew=s48-c-k-c0x00ffffff-no-rj",
@@ -283,6 +295,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgzT5jBPZe-DPDQ3kDx4AaABAg",
+        communityCommentId: "UgzT5jBPZe-DPDQ3kDx4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@dominiquekwong9220",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nfSppLCD_p_SuXDmSdAE7-9-LGLur8qLGgVYoVEvclLtz-hcyf1aFDVF51ZCP_GaEGag=s48-c-k-c0x00ffffff-no-rj",
@@ -297,6 +310,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxOAzAhrSmGm-n7Im14AaABAg",
+        communityCommentId: "UgxOAzAhrSmGm-n7Im14AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@拉风花漾剧场",
         authorThumbnailUrl: "https://yt3.ggpht.com/ZoO-RHhSJG6PKTaQAbzz2P-c864lQt9M-TvqcD34T-VrLi9_ABu8PFozlfIhYwfeWCH_Y-Rv=s48-c-k-c0x00ffffff-no-rj",
@@ -311,6 +325,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwyjWut3ZNFPvlOOYt4AaABAg",
+        communityCommentId: "UgwyjWut3ZNFPvlOOYt4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@alexzhang3",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nECxD3B45inK27YD2dteoBEpgeOt5YDmty-V0GxYJ7yAc=s48-c-k-c0x00ffffff-no-rj",
@@ -325,6 +340,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "Ugz0hhnrFpujoVnX-9p4AaABAg",
+        communityCommentId: "Ugz0hhnrFpujoVnX-9p4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@zhiyongyao5697",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_ny1BJ7v9IrycFZUbG7NUDykXtFTcxVbFAu6bx9AxG1xQ=s48-c-k-c0x00ffffff-no-rj",
@@ -339,6 +355,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgynZUsWOl1eVRqW3Yp4AaABAg",
+        communityCommentId: "UgynZUsWOl1eVRqW3Yp4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@小其-d2z",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_lCzOywUC6yzXpXKG90b-k1x7mJLmj-deYQwRhJmxaYECPZMNtZxESF3NhTg8ZDS468R1AyJDgS=s48-c-k-c0x00ffffff-no-rj",
@@ -353,6 +370,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgyTtAU9v4V69mEZbeB4AaABAg",
+        communityCommentId: "UgyTtAU9v4V69mEZbeB4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@Anthurzhu",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nLOZiVoOnOY9sRG6PEfbeJQZgNEc94Ld_-R0YhapW-QHpFlNNHtQIwpPu8VJKX5wVYKg=s48-c-k-c0x00ffffff-no-rj",
@@ -367,6 +385,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "Ugw9j_kbkbwyL96WGod4AaABAg",
+        communityCommentId: "Ugw9j_kbkbwyL96WGod4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@natian3339",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_kBsEFGd1T4oEg-OUr0h0_0mH-F7zEg75HzLMmUoDQ=s48-c-k-c0x00ffffff-no-rj",
@@ -381,6 +400,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgyF4v6OJ6WJ2dor3gp4AaABAg",
+        communityCommentId: "UgyF4v6OJ6WJ2dor3gp4AaABAg",
         postId: "KosgUhdAL5w",
         authorName: "@Corry-N",
         authorThumbnailUrl: "https://yt3.ggpht.com/MItrr1Kk5bTpyP6aNleAy9psrK7-YZ3tk8kzFGABHF9HovsTzwQ66BgQRS4zbR2ffZB20o0I=s48-c-k-c0x00ffffff-no-rj",
@@ -395,6 +415,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgziGE0ISl0ii0XxrIx4AaABAg",
+        communityCommentId: "UgziGE0ISl0ii0XxrIx4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@honeymayfair-rt9tc",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_mxUtdQSF2o6DoUQgbfF_PIENQX3ZsbVvod6Nhlg-4fOo7OikZ8V5GSUCvFIVhUL-2oTw=s48-c-k-c0x00ffffff-no-rj",
@@ -409,6 +430,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwZFDLP_fdXfxCCNqx4AaABAg",
+        communityCommentId: "UgwZFDLP_fdXfxCCNqx4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@life-wisdom-king",
         authorThumbnailUrl: "https://yt3.ggpht.com/29-6DA3gr6WpTNREPc1VzexMqJjMWXCWrMukL-iwwvheev_xF-grBcUVGD_BBxjuGdWi-ftYFaI=s48-c-k-c0x00ffffff-no-rj",
@@ -423,6 +445,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxDmdskQHcT8XKssvB4AaABAg",
+        communityCommentId: "UgxDmdskQHcT8XKssvB4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@辛笑然",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_k4WYGDdUJi37sMDbG5QbNNNgC2DDiO8vkVii-UvFQ=s48-c-k-c0x00ffffff-no-rj",
@@ -437,6 +460,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxcvhhAJjUmVL0AJP14AaABAg",
+        communityCommentId: "UgxcvhhAJjUmVL0AJP14AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@adrianloo177",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_ncKk8WXBtchU6r2_qkbQJu-lLK--rVV57eqSMsLdo=s48-c-k-c0x00ffffff-no-rj",
@@ -451,6 +475,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgygOCHIF8Au6lcKAeV4AaABAg",
+        communityCommentId: "UgygOCHIF8Au6lcKAeV4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@tonybox4496",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_kacat3SRmOWTo1jumRAh8P4sKTb9_55MgYUAfJHhA=s48-c-k-c0x00ffffff-no-rj",
@@ -465,6 +490,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwkRf0Ft9Ss6494O8d4AaABAg",
+        communityCommentId: "UgwkRf0Ft9Ss6494O8d4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@168kinon",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nCK9jD0HzAh3qvY6ed8p_OLtjD5BtgU_edetyO8nY=s48-c-k-c0x00ffffff-no-rj",
@@ -479,6 +505,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "Ugzg3PuNfN7IyHivxnh4AaABAg",
+        communityCommentId: "Ugzg3PuNfN7IyHivxnh4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@jenfiez",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_k91ZkT10mV_HfsZASEDYxLFPd5S4L9vg0rIe0t2AU-lw=s48-c-k-c0x00ffffff-no-rj",
@@ -493,6 +520,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "Ugy3hCxwvokLsABxGJN4AaABAg",
+        communityCommentId: "Ugy3hCxwvokLsABxGJN4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@fuugotiong7950",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nbu4MS9YR1m9yWQK5Ua-c7NUpL49cw4OztVkLi8rRUx10=s48-c-k-c0x00ffffff-no-rj",
@@ -507,6 +535,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgzD4kaNDX5Fra3Ouet4AaABAg",
+        communityCommentId: "UgzD4kaNDX5Fra3Ouet4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@kakkouii456",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_kkiw0k1B4wAYT7dM8DSA4PXcPIVQPXcLu0Kf6UgoU=s48-c-k-c0x00ffffff-no-rj",
@@ -521,6 +550,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "Ugxnae0CFnk5ZRkcEYR4AaABAg",
+        communityCommentId: "Ugxnae0CFnk5ZRkcEYR4AaABAg",
         postId: "31FpW6CMmYE",
         authorName: "@lcps666333222",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_lHFjBjdG57WBeGtWKPf9LRtdI9jCTlODIoQCdhQb32F6k=s48-c-k-c0x00ffffff-no-rj",
@@ -535,6 +565,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxcMypX_OJQDFLxgHF4AaABAg",
+        communityCommentId: "UgxcMypX_OJQDFLxgHF4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@小其-d2z",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_lCzOywUC6yzXpXKG90b-k1x7mJLmj-deYQwRhJmxaYECPZMNtZxESF3NhTg8ZDS468R1AyJDgS=s48-c-k-c0x00ffffff-no-rj",
@@ -549,6 +580,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwQCD0Jh6FaFqj-k-J4AaABAg",
+        communityCommentId: "UgwQCD0Jh6FaFqj-k-J4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@morinson-l2o",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_kca4zzSa19srlRdWdaz9q9pwaIGyPYqmyE-ZvehQJr9YL_GufA3vS1TxtgqBQFVeLJKA=s48-c-k-c0x00ffffff-no-rj",
@@ -563,6 +595,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwLx-FF3MJbPpLxg3p4AaABAg",
+        communityCommentId: "UgwLx-FF3MJbPpLxg3p4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@1004코인",
         authorThumbnailUrl: "https://yt3.ggpht.com/ASIxp4ewdN4-IldNCHEMj9f-e2ckgs-hqvqvGTb6AY7AW1-UvEBA4Hm-JWZWykJZOV3xlbOI=s48-c-k-c0x00ffffff-no-rj",
@@ -577,6 +610,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgzJXmozKeiGEXyhjUF4AaABAg",
+        communityCommentId: "UgzJXmozKeiGEXyhjUF4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@yealye",
         authorThumbnailUrl: "https://yt3.ggpht.com/Ey-9Ikwy7mRBgEo4dCpU93ecIS0-hmY1od6NWr4OxsJ5vqInv28_rAiHlaI5jwO7IMaOdPZNNw=s48-c-k-c0x00ffffff-no-rj",
@@ -591,6 +625,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgyiiATb7l0Fhm6Str54AaABAg",
+        communityCommentId: "UgyiiATb7l0Fhm6Str54AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@dongguaz6200",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_nflxGpzDPFpKZujNOaUL14p-_Ft2IAttEqzFME8z4kSg=s48-c-k-c0x00ffffff-no-rj",
@@ -605,6 +640,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwtmqRErZjOtD-Z9td4AaABAg",
+        communityCommentId: "UgwtmqRErZjOtD-Z9td4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@vanessawei7336",
         authorThumbnailUrl: "https://yt3.ggpht.com/hc8Qmct86kuEx4Xw0XjFhD3O1QgMIxEUyf3UM5JgCQrtJ_hjRKYD8IzMnUFXebPpVpBdNybU=s48-c-k-c0x00ffffff-no-rj",
@@ -619,6 +655,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgyrCRtdzPIzKK0wZKR4AaABAg",
+        communityCommentId: "UgyrCRtdzPIzKK0wZKR4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@hahnnienl9509",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_k0brn8nfCP0SFfDLClYU3s2NGbKJhmvqltZaV1MsQ=s48-c-k-c0x00ffffff-no-rj",
@@ -633,6 +670,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgzBAvIrVaucqWKIgmN4AaABAg",
+        communityCommentId: "UgzBAvIrVaucqWKIgmN4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@chensensen-w4s",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_lChINaMGzuGgYEdxh2b3CDLHVRP0vOCNdungwimTXwMXnLgD61gOFh7OyoNaPYCYhBMA=s48-c-k-c0x00ffffff-no-rj",
@@ -647,6 +685,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgzhREjUnzEHXNqhMJt4AaABAg",
+        communityCommentId: "UgzhREjUnzEHXNqhMJt4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@圣上侯",
         authorThumbnailUrl: "https://yt3.ggpht.com/JYMFtCYWayeQADU4sjTzF1w4p3O8m0awfpQWzeFu0nl7REf09yts6ykYOi0cSnJrgah-s4pqJak=s48-c-k-c0x00ffffff-no-rj",
@@ -661,6 +700,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgwcttbkqLeH1I81E5J4AaABAg",
+        communityCommentId: "UgwcttbkqLeH1I81E5J4AaABAg",
         postId: "4hBpLHqBSOg",
         authorName: "@壮壮志在我胸",
         authorThumbnailUrl: "https://yt3.ggpht.com/ytc/AIdro_kS8xvy4VbGSNhuEbnBXa9RkFW-8_E_KIlGpljLkiE=s48-c-k-c0x00ffffff-no-rj",
@@ -675,6 +715,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgxvIoovMliaJkCUaHN4AaABAg",
+        communityCommentId: "UgxvIoovMliaJkCUaHN4AaABAg",
         postId: "6SDtf0M3fRo",
         authorName: "@RibbitRibbit365",
         authorThumbnailUrl: "https://yt3.ggpht.com/JuX9VuwKw7oeAXdO98F8fapcdxBiZokO0D6txeG5NqyFGCW5ZrZsLfGxDMjR7L9G15BaF_leiA=s48-c-k-c0x00ffffff-no-rj",
@@ -689,6 +730,7 @@ export const mockComments: CommentWithAction[] = [
     },
     {
         id: "UgzRTUxcvQRWl_y7zjh4AaABAg",
+        communityCommentId: "UgzRTUxcvQRWl_y7zjh4AaABAg",
         postId: "oZozNrtbg-o",
         authorName: "@RibbitRibbit365",
         authorThumbnailUrl: "https://yt3.ggpht.com/JuX9VuwKw7oeAXdO98F8fapcdxBiZokO0D6txeG5NqyFGCW5ZrZsLfGxDMjR7L9G15BaF_leiA=s48-c-k-c0x00ffffff-no-rj",

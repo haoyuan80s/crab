@@ -77,7 +77,7 @@ export default function App() {
   function ChannelListItem(prop: { post: PostInfo }) {
     return (
       <div
-        class={`px-2.5 rounded-md cursor-pointer ${currentPostId() == prop.post.id ? "bg-crab-green" : "hover:bg-grey-custom1"}`}
+        class={`px-2.5 rounded-md cursor-pointer ${currentPostId() == prop.post.id ? "bg-crab-green" : "hover:bg-grey-custom1"} ${prop.post.isActive ? "" : "opacity-50"}`}
         onclick={() => setCurrentPostId(prop.post.id)}
       >
         <div

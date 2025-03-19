@@ -1,6 +1,6 @@
 import { createSignal, For, Show } from "solid-js";
 import { PostRenderInfo } from "../model";
-import { getDateString, TABS, DEFAULT_DETAIL_VIEW_TAB } from "../global";
+import { getDateString, DETAIL_VIEW_TABS, DEFAULT_DETAIL_VIEW_TAB } from "../global";
 import { getCommentsWithNoAction, getCommnentsOfActionType, countCommentsByTab, getCommentsWithAnyAction, countCommentsWithAnyAction } from "../status";
 import { SubmitButton } from "./SubmitButton";
 import { CommentItemView } from "./CommentView";
@@ -39,6 +39,7 @@ function PostMetadataView(prop: { post: PostRenderInfo }) {
 }
 
 export default function PostDetailView(prop: { post: PostRenderInfo }) {
+    const [isSubmittedView, setIsSubmittedView] = createSignal(false);
     const [activeTab, setActiveTab] = createSignal(DEFAULT_DETAIL_VIEW_TAB);
     const [metadataExpanded, setMetadataExpanded] = createSignal(true);
 
@@ -89,7 +90,7 @@ export default function PostDetailView(prop: { post: PostRenderInfo }) {
             <div class="flex h-fit w-full justify-between px-2 items-center py-2">
                 {/* Action Tab Buttons */}
                 <div class="flex space-x-2 items-center leading-none">
-                    <For each={TABS}>
+                    <For each={DETAIL_VIEW_TABS}>
                         {(tab) => (
                             <button
                                 class={`flex items-center justify-center border-1 border-grey-custom1 w-[60px] h-[45px] rounded-lg }`}

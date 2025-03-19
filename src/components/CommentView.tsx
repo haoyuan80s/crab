@@ -27,8 +27,15 @@ export function CommentItemView(prop: { comment: CommentWithAction }) {
     }
     return (
         <div
-            class="hover:bg-grey-custom1 px-2 rounded-lg"
-            onClick={(e) => handleClick(e)}
+            title={prop.comment.isSubmitted ? "This comment has been submitted and cannot be edited." : ""}
+            class={`hover:bg-grey-custom1 px-2 rounded-lg ${prop.comment.isSubmitted ? "opacity-30 pointer-events-none" : ""}`}
+            onClick={(e) => {
+                if (prop.comment.isSubmitted) {
+                    e.preventDefault()
+                    return;
+                }
+                handleClick(e)
+            }}
         >
             <div class="flex items-start space-x-2 text-custom13 pb-2 pt-2.5">
                 {/* Author Thumbnail */}

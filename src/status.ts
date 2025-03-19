@@ -62,6 +62,15 @@ export const removeFromRepliesStore = (commentId: string) => {
     });
 };
 
+export const submitCommentActions = (commentId: string) => {
+    rpc.submitCommentActions(commentId);
+    setCommentsStore(
+        (comment) => comment.id === commentId,
+        "isSubmitted",
+        () => true
+    );
+};
+
 // Status query functions
 export const getCommnentsOfActionType = (postId: string, actionType: CommentActionType): CommentWithAction[] => {
     return commentsStore.filter((comment) =>

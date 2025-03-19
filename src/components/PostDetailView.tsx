@@ -1,11 +1,12 @@
 import { createSignal, For, Show } from "solid-js";
-import { CommentWithAction, PostInfo } from "../model";
-import { addActionToCommentsStore, hasAction, getCommentsWithNoAction, getCommnentsOfActionType, getDateString, removeActionFrCommentsStore, repliesStore, setRepliesStore, timeAgo, TABS, removeFromRepliesStore, DEFAULT_REPLY, countCommentsByTab, DEFAULT_TAB, getCommentsWithAnyAction, countCommentsWithAnyAction } from "../global";
+import { PostRenderInfo } from "../model";
+import { getDateString, TABS, DEFAULT_DETAIL_VIEW_TAB } from "../global";
+import { getCommentsWithNoAction, getCommnentsOfActionType, countCommentsByTab, getCommentsWithAnyAction, countCommentsWithAnyAction } from "../status";
 import { SubmitButton } from "./SubmitButton";
 import { CommentItemView } from "./CommentView";
 
 // Show metadata about the post, e.g., summary, cover image, etc.
-function PostMetadataView(prop: { post: PostInfo }) {
+function PostMetadataView(prop: { post: PostRenderInfo }) {
     return (
         <div class="flex flex-col w-full items-center pb-2">
             <div class="text-custom12 leading-4 pt-2 pb-4">
@@ -37,8 +38,8 @@ function PostMetadataView(prop: { post: PostInfo }) {
     )
 }
 
-export default function PostDetailView(prop: { post: PostInfo }) {
-    const [activeTab, setActiveTab] = createSignal(DEFAULT_TAB);
+export default function PostDetailView(prop: { post: PostRenderInfo }) {
+    const [activeTab, setActiveTab] = createSignal(DEFAULT_DETAIL_VIEW_TAB);
     const [metadataExpanded, setMetadataExpanded] = createSignal(true);
 
     const comments = () => {
@@ -94,7 +95,7 @@ export default function PostDetailView(prop: { post: PostInfo }) {
                                 class={`flex items-center justify-center border-1 border-grey-custom1 w-[60px] h-[45px] rounded-lg }`}
                                 onClick={() => {
                                     if (tab === activeTab()) {
-                                        setActiveTab(DEFAULT_TAB)
+                                        setActiveTab(DEFAULT_DETAIL_VIEW_TAB)
                                     } else {
                                         setActiveTab(tab)
                                     }

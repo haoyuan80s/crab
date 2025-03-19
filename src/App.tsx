@@ -1,26 +1,67 @@
-import { createEffect, createSignal, For } from "solid-js";
+import { createEffect, createResource, createSignal, For } from "solid-js";
 import "./App.css";
-import { ChannelInfo, PostInfo } from "./model";
-import { channelResource, postsResource, commentsStore, setRepliesStore, timeAgo } from "./global";
+import { ChannelRenderInfo, PostRenderInfo } from "./model";
+import { channelRenderInfos, commentsStore, displayPostWithCrawlIds, extractChannelRenderInfosFromPostWithCrawlResponse, extractCommentsFromPostWithCrawlResponse, extractPostRenderInfosFromPostWithCrawlResponse, postRenderInfos, setChannelRenderInfos, setCommentsStore, setDisplayPostWithCrawlIds, setPostRenderInfos, setRepliesStore, setUserWatchStore, userWatchStore } from "./status";
 import PostDetailView from "./components/PostDetailView";
+import * as rpc from "./rpc";
+import { timeAgo } from "./global";
 
-
-function get1stPostInChannel(postList: PostInfo[], channelId: string) {
+function get1stPostInChannel(postList: PostRenderInfo[], channelId: string) {
   return postList.filter(post => post.channelId === channelId)[0]?.id
 }
 
-
 export default function App() {
-  const channels = () => channelResource() || [];
-  const posts = () => postsResource() || [];
+  // Store the post with crawl information for the posts in displayPostWithCrawlIds.
+  const [postWithCrawlResource, { refetch: refetchPostWithCrawl }] = createResource(displayPostWithCrawlIds, rpc.fetchPostWithCrawl);
 
-  const [currentChannelId, setCurrentChannelId] = createSignal(channels()[0]?.id || "");
+  const [currentChannelId, setCurrentChannelId] = createSignal("");
   const [currentPostId, setCurrentPostId] = createSignal("");
+
+  rpc.getUserWatchList().then(watchList => {
+    setUserWatchStore(watchList);
+  });
+
+  // Update the display post with last crawl ids once the user's watch list changes, which will then trigger the postWithCrawlResource to be refetched.
+  createEffect(() => {
+    const postIds = [...userWatchStore.activePostIds, ...userWatchStore.inactivePostIds];
+    rpc.appendLastCrawlIds(postIds).then(postWithCrawlIds => {
+      setDisplayPostWithCrawlIds(postWithCrawlIds);
+    });
+  });
+
+  // Update the commentsStore, postRenderInfos, and channelRenderInfos based on the postWithCrawlResource.
+  createEffect(() => {
+    const pwcr = postWithCrawlResource();
+    if (pwcr) {
+      console.log("[createEffect] Refreshing commentsStore based on postWithCrawlResource...");
+      setCommentsStore(extractCommentsFromPostWithCrawlResponse(pwcr));
+      console.log("[createEffect] Refreshed commentsStore based on postWithCrawlResource...");
+      console.log("[createEffect] Refreshing postRenderInfos and channelRenderInfos based on postWithCrawlResource...");
+      setPostRenderInfos(extractPostRenderInfosFromPostWithCrawlResponse(pwcr));
+      setChannelRenderInfos(extractChannelRenderInfosFromPostWithCrawlResponse(pwcr));
+      console.log("[createEffect] Refreshed postRenderInfos and channelRenderInfos based on postWithCrawlResource...");
+    }
+  });
+
+  // Update the repliesStore based on the commentsStore.
+  createEffect(() => {
+    if (commentsStore.length === 0) return;
+    console.log("[createEffect] Refreshing repliesStore based on commentsStore");
+    const initialReplies: Record<string, string> = {};
+    commentsStore.forEach((comment) => {
+      const reply = comment.actions.find((r) => r.type === "Reply");
+      if (reply) {
+        initialReplies[comment.id] = reply.desc;
+      }
+    });
+    setRepliesStore(initialReplies);
+    console.log("[createEffect] Refreshed repliesStore based on commentsStore");
+  });
 
   // Initialize currentPostId when channels and posts are loaded
   createEffect(() => {
-    const loadedChannels = channels();
-    const loadedPosts = posts();
+    const loadedChannels = channelRenderInfos();
+    const loadedPosts = postRenderInfos();
     if (loadedChannels.length > 0 && loadedPosts.length > 0) {
       const firstChannelId = loadedChannels[0].id;
       setCurrentChannelId(firstChannelId);
@@ -31,17 +72,17 @@ export default function App() {
     }
   });
 
-  const filteredPosts = () => posts().filter(post => post.channelId === currentChannelId());
-  const currentPost = () => posts().find(post => post.id === currentPostId());
+  const filteredPosts = () => postRenderInfos().filter(post => post.channelId === currentChannelId());
+  const currentPost = () => postRenderInfos().find(post => post.id === currentPostId());
 
   // Button Tracked for Channels
-  function ChannelButton(prop: { postgrp: ChannelInfo }) {
+  function ChannelButton(prop: { postgrp: ChannelRenderInfo }) {
     return (
       <div
         class="flex flex-col items-center rounded-md hover:bg-grey-custom1 py-1 space-y-1 leading-none w-full cursor-pointer"
         onclick={() => {
           setCurrentChannelId(prop.postgrp.id);
-          const firstPostId = get1stPostInChannel(posts(), prop.postgrp.id);
+          const firstPostId = get1stPostInChannel(postRenderInfos(), prop.postgrp.id);
           if (firstPostId) {
             setCurrentPostId(firstPostId);
           }
@@ -74,10 +115,10 @@ export default function App() {
     )
   }
 
-  function ChannelListItem(prop: { post: PostInfo }) {
+  function ChannelListItem(prop: { post: PostRenderInfo }) {
     return (
       <div
-        class={`px-2.5 rounded-md cursor-pointer ${currentPostId() == prop.post.id ? "bg-crab-green" : "hover:bg-grey-custom1"} ${prop.post.initIsActive ? "" : "opacity-50"}`}
+        class={`px-2.5 rounded-md cursor-pointer ${currentPostId() == prop.post.id ? "bg-crab-green" : "hover:bg-grey-custom1"} ${userWatchStore.activePostIds.includes(prop.post.id) ? "" : "opacity-50"}`}
         onclick={() => setCurrentPostId(prop.post.id)}
       >
         <div
@@ -108,7 +149,7 @@ export default function App() {
       {/* Channel Carousel */}
       <div class="flex flex-col w-[64px] shrink-0 h-full bg-white items-center justify-start px-1 py-4">
         <div class="flex flex-col h-full items-center justify-start overflow-y-scroll no-scrollbar space-y-1">
-          <For each={channels()}>
+          <For each={channelRenderInfos()}>
             {(postgrp) => (<ChannelButton postgrp={postgrp} />)}
           </For>
         </div>

@@ -1,5 +1,8 @@
-import { createSignal, onCleanup } from "solid-js";
-import { addActionToCommentsStore, DEFAULT_REPLY, hasAction, removeFromRepliesStore, removeActionFrCommentsStore, repliesStore, setRepliesStore, timeAgo } from "../global";
+import { createSignal } from "solid-js";
+import { addCommentAction, removeFromRepliesStore, removeCommentAction, repliesStore, setRepliesStore } from "../status";
+import { DEFAULT_REPLY, timeAgo } from "../global";
+import { hasAction } from "../model";
+
 import { CommentWithAction } from "../model";
 
 export function CommentItemView(prop: { comment: CommentWithAction }) {
@@ -84,11 +87,11 @@ export function CommentItemView(prop: { comment: CommentWithAction }) {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     if (hasAction(prop.comment, "Like")) {
-                                        removeActionFrCommentsStore(prop.comment.id, "Like");
+                                        removeCommentAction(prop.comment.id, "Like");
                                     } else {
-                                        addActionToCommentsStore(prop.comment.id, "Like", "Liked!");
+                                        addCommentAction(prop.comment.id, "Like", "Liked!");
                                         if (hasAction(prop.comment, "Dislike")) {
-                                            removeActionFrCommentsStore(prop.comment.id, "Dislike");
+                                            removeCommentAction(prop.comment.id, "Dislike");
                                         }
                                     }
                                 }}
@@ -103,11 +106,11 @@ export function CommentItemView(prop: { comment: CommentWithAction }) {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     if (hasAction(prop.comment, "Dislike")) {
-                                        removeActionFrCommentsStore(prop.comment.id, "Dislike");
+                                        removeCommentAction(prop.comment.id, "Dislike");
                                     } else {
-                                        addActionToCommentsStore(prop.comment.id, "Dislike", "Disliked!");
+                                        addCommentAction(prop.comment.id, "Dislike", "Disliked!");
                                         if (hasAction(prop.comment, "Like")) {
-                                            removeActionFrCommentsStore(prop.comment.id, "Like");
+                                            removeCommentAction(prop.comment.id, "Like");
                                         }
                                     }
                                 }}
@@ -122,9 +125,9 @@ export function CommentItemView(prop: { comment: CommentWithAction }) {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     if (hasAction(prop.comment, "Delete")) {
-                                        removeActionFrCommentsStore(prop.comment.id, "Delete");
+                                        removeCommentAction(prop.comment.id, "Delete");
                                     } else {
-                                        addActionToCommentsStore(prop.comment.id, "Delete", "Delete!");
+                                        addCommentAction(prop.comment.id, "Delete", "Delete!");
                                     }
                                 }}
                             >
@@ -145,9 +148,9 @@ export function CommentItemView(prop: { comment: CommentWithAction }) {
                                 value={repliesStore[prop.comment.id]}
                                 onInput={(e) => setRepliesStore(prop.comment.id, e.currentTarget.value)}
                                 onBlur={() => {
-                                    removeActionFrCommentsStore(prop.comment.id, "Reply");
+                                    removeCommentAction(prop.comment.id, "Reply");
                                     if (isOngoingReplyValid(prop.comment)) {
-                                        addActionToCommentsStore(prop.comment.id, "Reply", repliesStore[prop.comment.id]);
+                                        addCommentAction(prop.comment.id, "Reply", repliesStore[prop.comment.id]);
                                     } else {
                                         setRepliesStore(prop.comment.id, "")
                                         removeFromRepliesStore(prop.comment.id);
@@ -160,7 +163,7 @@ export function CommentItemView(prop: { comment: CommentWithAction }) {
                                 onClick={() => {
                                     setRepliesStore(prop.comment.id, "")
                                     removeFromRepliesStore(prop.comment.id);
-                                    removeActionFrCommentsStore(prop.comment.id, "Reply");
+                                    removeCommentAction(prop.comment.id, "Reply");
                                 }}
                             >
                                 <img

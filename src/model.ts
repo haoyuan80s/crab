@@ -1,31 +1,52 @@
 export type PostType = "YouTubeVideo" | "RedditPost" | "TwitterPost";
 export type ChannelType = "YouTubeChannel" | "RedditUser" | "TwitterUser";
 
+export type postMetadataReponse = {
+    postId: string;
+    postTitle: string;
+    postLink: string;
+    postThumbnailUrl: string;
+
+    postSummary: string;
+    postCreatedAtCommunityTime: Date;
+    postLastCommentTime: Date;
+    postLastCrawledTime: Date;
+
+    channelId: string;
+    channelTitle: string;
+    channelLink: string;
+    channelThumbnailUrl: string;
+}
+
+export type crawlMetadataResponse = {
+    crawlId: string;
+    crawlTime: Date;
+}
+
+export type PostWithCrawlResponse = {
+    post: postMetadataReponse;
+    crawl: crawlMetadataResponse | null;
+    commentsWithActions: CommentWithAction[];
+}
+
 // In YouTube, a video is a post.
-export type PostInfo = {
+export type PostRenderInfo = {
     //Granted by social media platform, not our system.
     id: string;
-
-    type: PostType;
     channelId: string;
     link: string;
     title: string;
-    createdAtCommunityTime: Date;
     thumbnailUrl: string;
+    summary: string;
+    createdAtCommunityTime: Date;
     lastCrawledTime: Date;
     lastCommentTime: Date;
-    summary: string;
-
-    // This is the initial active status of the post. User can edit upon, and 
-    // thus do not use it outside of the initial setup.
-    initIsActive: boolean;
 };
 
 // In YouTube, a channel is a channel
-export type ChannelInfo = {
+export type ChannelRenderInfo = {
     //Granted by social media platform, not our system.
     id: string;
-    type: ChannelType;
     link: string;
     title: string;
     thumbnailUrl: string;
@@ -61,8 +82,13 @@ export type CommentWithAction = {
 
     // This is the initial actions of the comment passed over from the backend. 
     // User can edit upon, and thus do not use it outside of the initial setup.
-    initActions: CommentAction[];
+    actions: CommentAction[];
     // This is the initial status when passed over from the backend.
     // User can edit upon, and thus do not use it outside of the initial setup.
-    initIsSubmitted: boolean;
+    isSubmitted: boolean;
 }
+
+export const hasAction = (comment: CommentWithAction, actionType: CommentActionType): boolean => {
+    return comment.actions.some((action) => action.type === actionType);
+}
+

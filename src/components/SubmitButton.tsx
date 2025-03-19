@@ -1,5 +1,5 @@
 import { createSignal, Show } from "solid-js";
-import { countCommentsOfActionTYpe } from "../global";
+import { countCommentsOfActionTYpe } from "../status";
 
 export function SubmitButton(prop: { postId: string }) {
     const [showSlideToConfirm, setShowSlideToConfirm] = createSignal(false);

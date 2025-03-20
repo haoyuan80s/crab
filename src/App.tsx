@@ -1,30 +1,51 @@
 import { createEffect, createResource, createSignal, For } from "solid-js";
 import "./App.css";
 import { ChannelRenderInfo, PostRenderInfo } from "./model";
-import { channelRenderInfos, commentsStore, displayPostWithCrawlIds, extractChannelRenderInfosFromPostWithCrawlResponse, extractCommentsFromPostWithCrawlResponse, extractPostRenderInfosFromPostWithCrawlResponse, postRenderInfos, setChannelRenderInfos, setCommentsStore, setDisplayPostWithCrawlIds, setPostRenderInfos, setRepliesStore, setUserWatchStore, userWatchStore } from "./status";
+import {
+  channelRenderInfos,
+  commentsStore,
+  displayPostWithCrawlIds,
+  extractChannelRenderInfosFromPostWithCrawlResponse,
+  extractCommentsFromPostWithCrawlResponse,
+  extractPostRenderInfosFromPostWithCrawlResponse,
+  postRenderInfos,
+  setChannelRenderInfos,
+  setCommentsStore,
+  setDisplayPostWithCrawlIds,
+  setPostRenderInfos,
+  setRepliesStore,
+  setUserWatchStore,
+  userWatchStore,
+} from "./states";
 import PostDetailView from "./components/PostDetailView";
 import * as rpc from "./rpc";
-import { timeAgo } from "./global";
+import { timeAgo } from "./utils";
 
 function get1stPostInChannel(postList: PostRenderInfo[], channelId: string) {
-  return postList.filter(post => post.channelId === channelId)[0]?.id
+  return postList.filter((post) => post.channelId === channelId)[0]?.id;
 }
 
 export default function App() {
   // Store the post with crawl information for the posts in displayPostWithCrawlIds.
-  const [postWithCrawlResource, { refetch: refetchPostWithCrawl }] = createResource(displayPostWithCrawlIds, rpc.fetchPostWithCrawl);
+  const [postWithCrawlResource] = createResource(
+    displayPostWithCrawlIds,
+    rpc.fetchPostWithCrawl,
+  );
 
   const [currentChannelId, setCurrentChannelId] = createSignal("");
   const [currentPostId, setCurrentPostId] = createSignal("");
 
-  rpc.getUserWatchList().then(watchList => {
+  rpc.getUserWatchList().then((watchList) => {
     setUserWatchStore(watchList);
   });
 
   // Update the display post with last crawl ids once the user's watch list changes, which will then trigger the postWithCrawlResource to be refetched.
   createEffect(() => {
-    const postIds = [...userWatchStore.activePostIds, ...userWatchStore.inactivePostIds];
-    rpc.appendLastCrawlIds(postIds).then(postWithCrawlIds => {
+    const postIds = [
+      ...userWatchStore.activePostIds,
+      ...userWatchStore.inactivePostIds,
+    ];
+    rpc.appendLastCrawlIds(postIds).then((postWithCrawlIds) => {
       setDisplayPostWithCrawlIds(postWithCrawlIds);
     });
   });
@@ -33,20 +54,32 @@ export default function App() {
   createEffect(() => {
     const pwcr = postWithCrawlResource();
     if (pwcr) {
-      console.log("[createEffect] Refreshing commentsStore based on postWithCrawlResource...");
+      console.log(
+        "[createEffect] Refreshing commentsStore based on postWithCrawlResource...",
+      );
       setCommentsStore(extractCommentsFromPostWithCrawlResponse(pwcr));
-      console.log("[createEffect] Refreshed commentsStore based on postWithCrawlResource...");
-      console.log("[createEffect] Refreshing postRenderInfos and channelRenderInfos based on postWithCrawlResource...");
+      console.log(
+        "[createEffect] Refreshed commentsStore based on postWithCrawlResource...",
+      );
+      console.log(
+        "[createEffect] Refreshing postRenderInfos and channelRenderInfos based on postWithCrawlResource...",
+      );
       setPostRenderInfos(extractPostRenderInfosFromPostWithCrawlResponse(pwcr));
-      setChannelRenderInfos(extractChannelRenderInfosFromPostWithCrawlResponse(pwcr));
-      console.log("[createEffect] Refreshed postRenderInfos and channelRenderInfos based on postWithCrawlResource...");
+      setChannelRenderInfos(
+        extractChannelRenderInfosFromPostWithCrawlResponse(pwcr),
+      );
+      console.log(
+        "[createEffect] Refreshed postRenderInfos and channelRenderInfos based on postWithCrawlResource...",
+      );
     }
   });
 
   // Update the repliesStore based on the commentsStore.
   createEffect(() => {
     if (commentsStore.length === 0) return;
-    console.log("[createEffect] Refreshing repliesStore based on commentsStore");
+    console.log(
+      "[createEffect] Refreshing repliesStore based on commentsStore",
+    );
     const initialReplies: Record<string, string> = {};
     commentsStore.forEach((comment) => {
       const reply = comment.actions.find((r) => r.type === "Reply");
@@ -72,8 +105,10 @@ export default function App() {
     }
   });
 
-  const filteredPosts = () => postRenderInfos().filter(post => post.channelId === currentChannelId());
-  const currentPost = () => postRenderInfos().find(post => post.id === currentPostId());
+  const filteredPosts = () =>
+    postRenderInfos().filter((post) => post.channelId === currentChannelId());
+  const currentPost = () =>
+    postRenderInfos().find((post) => post.id === currentPostId());
 
   // Button Tracked for Channels
   function ChannelButton(prop: { postgrp: ChannelRenderInfo }) {
@@ -82,7 +117,10 @@ export default function App() {
         class="flex flex-col items-center rounded-md hover:bg-grey-custom1 py-1 space-y-1 leading-none w-full cursor-pointer"
         onclick={() => {
           setCurrentChannelId(prop.postgrp.id);
-          const firstPostId = get1stPostInChannel(postRenderInfos(), prop.postgrp.id);
+          const firstPostId = get1stPostInChannel(
+            postRenderInfos(),
+            prop.postgrp.id,
+          );
           if (firstPostId) {
             setCurrentPostId(firstPostId);
           }
@@ -95,24 +133,27 @@ export default function App() {
             class={`w-[38px] h-[38px] rounded-full shadow-[0px_2px_4px_rgba(0,0,0,0.2)] ${currentChannelId() == prop.postgrp.id ? "outline-2 outline-crab-green" : ""}`}
           />
         </div>
-        <p class={`text-custom10 leading-none line-clamp-1 text-center px-0.5 ${currentChannelId() == prop.postgrp.id ? "text-crab-green" : "text-grey-channel-text"}`}>{prop.postgrp.title}</p>
+        <p
+          class={`text-custom10 leading-none line-clamp-1 text-center px-0.5 ${currentChannelId() == prop.postgrp.id ? "text-crab-green" : "text-grey-channel-text"}`}
+        >
+          {prop.postgrp.title}
+        </p>
       </div>
-    )
+    );
   }
 
   // Button for Adding a New Channel
   function AddChannelButton() {
     return (
-      <div
-        class="flex flex-col items-center rounded-md py-2 space-y-1 leading-none w-full cursor-pointer text-grey-channel-text"
-      >
+      <div class="flex flex-col items-center rounded-md py-2 space-y-1 leading-none w-full cursor-pointer text-grey-channel-text">
         <div class="px-2 w-full h-full">
-          <div
-            class="flex w-[38px] h-[38px] rounded-full justify-center items-center hover:bg-grey-custom1 text-xl font-light shadow-[0px_2px_4px_rgba(0,0,0,0.2)]"
-          > + </div>
+          <div class="flex w-[38px] h-[38px] rounded-full justify-center items-center hover:bg-grey-custom1 text-xl font-light shadow-[0px_2px_4px_rgba(0,0,0,0.2)]">
+            {" "}
+            +{" "}
+          </div>
         </div>
       </div>
-    )
+    );
   }
 
   function ChannelListItem(prop: { post: PostRenderInfo }) {
@@ -131,17 +172,34 @@ export default function App() {
               class="w-[42px] h-[42px] rounded-md object-cover"
             />
             <div class="flex flex-col leading-tight h-full ">
-              <div class={`text-custom14 line-clamp-1 ${currentPostId() == prop.post.id ? "text-white" : "text-black"}`}>{prop.post.title}</div>
+              <div
+                class={`text-custom14 line-clamp-1 ${currentPostId() == prop.post.id ? "text-white" : "text-black"}`}
+              >
+                {prop.post.title}
+              </div>
               <div class="flex pt-1">
-                <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-gray-400"}`}>Released {timeAgo(prop.post.createdAtCommunityTime)}</div>
-                <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-gray-400"} px-0.5`}>⋅</div>
-                <div class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-crab-orange"}`}> Tracked {timeAgo(prop.post.lastCrawledTime)}</div>
+                <div
+                  class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-gray-400"}`}
+                >
+                  Released {timeAgo(prop.post.createdAtCommunityTime)}
+                </div>
+                <div
+                  class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-gray-400"} px-0.5`}
+                >
+                  ⋅
+                </div>
+                <div
+                  class={`text-custom11 leading-none font-light ${currentPostId() == prop.post.id ? "text-white" : "text-crab-orange"}`}
+                >
+                  {" "}
+                  Tracked {timeAgo(prop.post.lastCrawledTime)}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -150,16 +208,19 @@ export default function App() {
       <div class="flex flex-col w-[64px] shrink-0 h-full bg-white items-center justify-start px-1 py-4">
         <div class="flex flex-col h-full items-center justify-start overflow-y-scroll no-scrollbar space-y-1">
           <For each={channelRenderInfos()}>
-            {(postgrp) => (<ChannelButton postgrp={postgrp} />)}
+            {(postgrp) => <ChannelButton postgrp={postgrp} />}
           </For>
         </div>
-        <div class="bottom-100"> <AddChannelButton /> </div>
+        <div class="bottom-100">
+          {" "}
+          <AddChannelButton />{" "}
+        </div>
       </div>
 
       {/* Post List for Selected Channel */}
       <div class="flex shadow-[0px_-1px_2px_rgba(0,0,0,0.1)] flex-col min-w-[280px] max-w-[320px] h-full overflow-y-scroll no-scrollbar space-y-0 px-1 ">
         <For each={filteredPosts()}>
-          {(post) => (<ChannelListItem post={post} />)}
+          {(post) => <ChannelListItem post={post} />}
         </For>
       </div>
 

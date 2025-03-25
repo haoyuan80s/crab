@@ -1,21 +1,30 @@
-import { createResource, For } from "solid-js";
-import { APP } from "../state";
+import { For, Setter } from "solid-js";
 import { api } from "../rpc";
 import { Post } from "../model/Post";
-import { unwrapOr } from "../result";
 import PostItemView from "./PostItemView";
-import { ChannelId } from "../model/ChannelId";
+import { PostId } from "../model/PostId";
 
-export default function PostListView() {
-  // TODO: refetch or mutate if subscribe new post
-  createResource(
-    () => APP().selectedChannelId(),
-    async (channelId: ChannelId) => await APP().fetchPostsV2(channelId),
-  );
-
+export default function PostListView(props: {
+  posts: Post[];
+  selectedPostId: PostId;
+  setSelectedPostId: Setter<PostId>;
+}) {
   return (
     <div class="flex shadow-[0px_-1px_2px_rgba(0,0,0,0.1)] flex-col min-w-[280px] max-w-[320px] h-full overflow-y-scroll no-scrollbar space-y-0 px-1 ">
-      <For each={APP().posts()}>{(post) => <PostItemView post={post} />}</For>
+      <For each={props.posts}>
+        {(post) => (
+          <div
+            onclick={() => {
+              props.setSelectedPostId(post.id);
+            }}
+          >
+            <PostItemView
+              post={post}
+              selected={post.id === props.selectedPostId}
+            />
+          </div>
+        )}
+      </For>
     </div>
   );
 }

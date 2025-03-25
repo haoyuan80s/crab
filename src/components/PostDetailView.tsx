@@ -1,11 +1,12 @@
 import { createResource, createSignal, For, Show } from "solid-js";
 import { DETAIL_VIEW_TABS, DEFAULT_DETAIL_VIEW_TAB } from "../consts";
 import { SubmitButton } from "./SubmitButton";
-import { CommentItemView } from "./CommentView";
+// import { CommentItemView } from "./CommentView";
 import { Post } from "../model/Post";
 import { getDateString } from "../utils";
-import { APP } from "../state";
 import { PostId } from "../model/PostId";
+import { api } from "../rpc";
+import { unwrapOr } from "../result";
 
 // Show metadata about the post, e.g., summary, cover image, etc.
 function PostMetadataView(prop: { post: Post }) {
@@ -44,12 +45,19 @@ function PostMetadataView(prop: { post: Post }) {
 }
 
 export default function PostDetailView(prop: { post: Post }) {
-  const [post] = createResource(() =>
-    APP().selectedPostId(() => App().selectedPostId),
-  );
+  // const [post] = createResource(
+  //   () => APP().selectedPostId(),
+  //   async (postId: PostId) => await APP().fetchPosts,
+  // );
   const [comments, { mutate, refetch }] = createResource(
-    () => post().id,
-    async (postId: PostId) => await APP().fetchComments(postId),
+    () => prop.post.id,
+    async (postId: PostId) => {
+      const res = await api<Comment[]>({ ListComments: { postId: postId } });
+      return unwrapOr(res, []);
+    },
+    {
+      initialValue: [],
+    },
   );
   const [activeTab, setActiveTab] = createSignal(DEFAULT_DETAIL_VIEW_TAB);
   const [metadataExpanded, setMetadataExpanded] = createSignal(true);
@@ -138,7 +146,8 @@ export default function PostDetailView(prop: { post: Post }) {
       <div class="w-full flex-1 py-1 overflow-y-auto no-scrollbar">
         <div class="flex flex-col">
           <For each={comments()}>
-            {(comment) => <CommentItemView comment={comment} />}
+            {/* {(comment) => <CommentItemView comment={comment} />} */}
+            <div>CommentItemView</div>
           </For>
           <div class="h-[100px]" />
         </div>

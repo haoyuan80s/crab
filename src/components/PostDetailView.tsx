@@ -1,25 +1,21 @@
-import { createSignal, For, Show } from "solid-js";
-import { PostRenderInfo } from "../model";
+import { createResource, createSignal, For, Show } from "solid-js";
 import { DETAIL_VIEW_TABS, DEFAULT_DETAIL_VIEW_TAB } from "../consts";
-import { getDateString } from "../utils";
-import {
-  getCommentsWithNoAction,
-  getCommnentsOfActionType,
-  countCommentsByTab,
-  getCommentsWithAnyAction,
-  countCommentsWithAnyAction,
-} from "../states";
 import { SubmitButton } from "./SubmitButton";
 import { CommentItemView } from "./CommentView";
+import { Post } from "../model/Post";
+import { getDateString } from "../utils";
+import { APP } from "../state";
+import { PostId } from "../model/PostId";
 
 // Show metadata about the post, e.g., summary, cover image, etc.
-function PostMetadataView(prop: { post: PostRenderInfo }) {
+function PostMetadataView(prop: { post: Post }) {
   return (
     <div class="flex flex-col w-full items-center pb-2">
       <div class="text-custom12 leading-4 pt-2 pb-4">
-        <span class="font-medium">
-          {getDateString(prop.post.createdAtCommunityTime)}:{" "}
-        </span>{" "}
+        {/* TODO: ADD TIME */}
+        {/* <span class="font-medium"> */}
+        {/*   {getDateString(prop.post.createdAtCommunityTime)}:{" "} */}
+        {/* </span>{" "} */}
         {prop.post.summary}
       </div>
       <div class="relative w-full max-w-[300px]">
@@ -47,28 +43,35 @@ function PostMetadataView(prop: { post: PostRenderInfo }) {
   );
 }
 
-export default function PostDetailView(prop: { post: PostRenderInfo }) {
+export default function PostDetailView(prop: { post: Post }) {
+  const [post] = createResource(() =>
+    APP().selectedPostId(() => App().selectedPostId),
+  );
+  const [comments, { mutate, refetch }] = createResource(
+    () => post().id,
+    async (postId: PostId) => await APP().fetchComments(postId),
+  );
   const [activeTab, setActiveTab] = createSignal(DEFAULT_DETAIL_VIEW_TAB);
   const [metadataExpanded, setMetadataExpanded] = createSignal(true);
 
-  const comments = () => {
-    if (activeTab() === "Like") {
-      return getCommnentsOfActionType(prop.post.id, "Like");
-    }
-    if (activeTab() === "Dislike") {
-      return getCommnentsOfActionType(prop.post.id, "Dislike");
-    }
-    if (activeTab() === "Delete") {
-      return getCommnentsOfActionType(prop.post.id, "Delete");
-    }
-    if (activeTab() === "Reply") {
-      return getCommnentsOfActionType(prop.post.id, "Reply");
-    }
-    if (activeTab() === "NoReact") {
-      return getCommentsWithNoAction(prop.post.id);
-    }
-    return getCommentsWithAnyAction(prop.post.id);
-  };
+  // const comments = () => {
+  //   if (activeTab() === "Like") {
+  //     return getCommnentsOfActionType(prop.post.id, "Like");
+  //   }
+  //   if (activeTab() === "Dislike") {
+  //     return getCommnentsOfActionType(prop.post.id, "Dislike");
+  //   }
+  //   if (activeTab() === "Delete") {
+  //     return getCommnentsOfActionType(prop.post.id, "Delete");
+  //   }
+  //   if (activeTab() === "Reply") {
+  //     return getCommnentsOfActionType(prop.post.id, "Reply");
+  //   }
+  //   if (activeTab() === "NoReact") {
+  //     return getCommentsWithNoAction(prop.post.id);
+  //   }
+  //   return getCommentsWithAnyAction(prop.post.id);
+  // };
 
   return (
     <div class="relative flex flex-col items-center w-full h-full px-2 py-4 text-black font-figtree leading-tight text-custom14">
@@ -110,9 +113,9 @@ export default function PostDetailView(prop: { post: PostRenderInfo }) {
                 <div
                   class={`flex flex-col py-1 leading-none space-x-0 ${activeTab() === tab ? "opacity-100" : "opacity-30 hover:opacity-50"}`}
                 >
-                  <div class="font-semibold text-custom13">
-                    {countCommentsByTab(prop.post.id, tab)}
-                  </div>
+                  {/* <div class="font-semibold text-custom13"> */}
+                  {/*   {countCommentsByTab(prop.post.id, tab)} */}
+                  {/* </div> */}
                   <img
                     src={`/tab${tab}.svg`}
                     class="h-[17px] w-auto cursor-pointer"
@@ -141,10 +144,9 @@ export default function PostDetailView(prop: { post: PostRenderInfo }) {
         </div>
       </div>
       {/* Submit Buttons */}
-      {countCommentsWithAnyAction(prop.post.id) > 0 && (
-        <SubmitButton postId={prop.post.id} />
-      )}
+      {/* {countCommentsWithAnyAction(prop.post.id) > 0 && ( */}
+      {/*   <SubmitButton postId={prop.post.id} /> */}
+      {/* )} */}
     </div>
   );
 }
-

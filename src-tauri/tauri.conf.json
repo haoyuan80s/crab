@@ -1,18 +1,18 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "crabcrabgo",
+  "productName": "crabcrabgo2",
   "version": "0.1.0",
-  "identifier": "com.crabcrabgo.app",
+  "identifier": "com.crabcrabgo2.app",
   "build": {
     "beforeDevCommand": "npm run dev",
-    "devUrl": "http://localhost:1420",
+    "devUrl": "http://localhost:1422",
     "beforeBuildCommand": "npm run build",
     "frontendDist": "../dist"
   },
   "app": {
     "windows": [
       {
-        "title": "crabcrabgo",
+        "title": "crabcrabgo2",
         "width": 900,
         "height": 1024,
         "resizable": true

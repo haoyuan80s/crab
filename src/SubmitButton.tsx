@@ -80,4 +80,3 @@ export function SlideToConfirm(prop: { postId: string }) {
     </div>
   );
 }
-

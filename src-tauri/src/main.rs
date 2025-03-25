@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    crabcrabgo_lib::run()
+    crabcrabgo2_lib::run()
 }

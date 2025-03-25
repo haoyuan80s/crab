@@ -1,81 +1,107 @@
-import { mockPostWithCrawlIds, mockPostWithCrawlResponse, mockUserWatch } from "./dev";
-import { CommentActionType, PostWithCrawlResponse, UserWatch } from "./model";
+import { ApiMethod } from "./model/ApiMethod";
+import { BACKEND_URL } from "./config";
+import { TOKEN } from "./state";
+import { AuthMethod } from "./model/AuthMethod";
+import { Result, unwrap } from "./result";
 
-// Edit a post's watch status. If the post is not in the user's watch list, add it to the watch list and set its active status accordingly.
-export const userEditPostWatch = async (postId: string, initIsActive: boolean): Promise<void> => {
-    console.log("[userEditPostWatch] Editing post watch status: ", postId, initIsActive);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 200);
+export async function api<T>(method: ApiMethod): Promise<Result<T>> {
+  try {
+    const response = await fetch(`${BACKEND_URL}/api`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${TOKEN()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(method),
     });
+
+    if (!response.ok) {
+      throw new Error(
+        `API error -- status: ${response.statusText}, message: ${await response.text()}`,
+      );
+    }
+
+    const json = await response.json();
+    const value = json as T;
+    return { ok: true, value };
+  } catch (error) {
+    return {
+      ok: false,
+      error: `Error parsing JSON response: ${error}`,
+    };
+  }
 }
 
-// Delete a post from the user's watch list.
-export const userDeletePostWatch = async (postId: string): Promise<void> => {
-    console.log("[userDeletePostWatch] Deleting post watch: ", postId);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 200);
+export async function auth<T>(method: AuthMethod): Promise<Result<T>> {
+  try {
+    const response = await fetch(`${BACKEND_URL}/auth`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(method),
     });
+
+    if (!response.ok) {
+      throw new Error(
+        `AUTH error -- status: ${response.statusText}, message: ${await response.text()}`,
+      );
+    }
+
+    const json = await response.json();
+    const value = json as T;
+    return { ok: true, value };
+  } catch (error) {
+    return {
+      ok: false,
+      error: `Error parsing JSON response: ${error}`,
+    };
+  }
 }
 
-export const getUserWatchList = async (): Promise<UserWatch> => {
-    console.log("[getUserWatchList] Getting user's watch list...");
-    return new Promise((resolve) => {
-        console.log("[getUserWatchList] Received user's watch list with ", mockUserWatch.activePostIds.length, " active posts and ", mockUserWatch.inactivePostIds.length, " inactive posts...");
-        setTimeout(() => {
-            resolve(mockUserWatch);
-        }, 200);
+export async function health_check() {
+  try {
+    const response = await fetch(`${BACKEND_URL}/health_check`, {
+      method: "GET",
     });
+    console.log(response.status); // e.g. 200
+    console.log(response.statusText); // e.g. "OK"
+  } catch (error) {
+    console.error("health_check error:", error);
+  }
 }
 
-// Given the post ids in the user's watch list, append the last crawl id to each 
-// post id, i.e., "{post_id}::{last_crawl_id}". In case that no
-// crawl id is available for the post, return "{post_id}".
-export const appendLastCrawlIds = async (postIds: string[]): Promise<string[]> => {
-    console.log("[appendLastCrawlIds] Append last crawl id for ", postIds.length, " posts...");
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(mockPostWithCrawlIds);
-        }, 200);
-    });
+export function add(...args: number[]) {
+  return args.reduce((a, b) => a + b, 0);
 }
 
-export const fetchPostWithCrawl = async (postWithCrawlIds: string[]): Promise<PostWithCrawlResponse[]> => {
-    console.log("[fetchPostWithCrawl] Fetching post with crawl for ", postWithCrawlIds.length, " posts...");
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(mockPostWithCrawlResponse);
-        }, 200);
-    });
+//#region test
+
+if (import.meta.vitest) {
+  test("add works", async () => {
+    const c: number = unwrap(await api({ Add: { a: 1, b: 2 } }));
+    expect(c).toBe(3);
+  });
+
+  // test("get user state works", async () => {
+  //   await auth({
+  //     CreateDevUser: { is_fresh: false },
+  //   });
+  //   const userState: UserState = await api("GetUserState");
+  //   expect({
+  //     userId: userState.id,
+  //     userName: userState.name,
+  //   }).toMatchSnapshot();
+  // });
+
+  // test("subscribe post works", async () => {
+  //   await auth({
+  //     CreateDevUser: { is_fresh: true },
+  //   });
+  //   await api({ SubscribePost: { post_id: DEV.postId } });
+  //   const newUserState: UserState = await api("GetUserState");
+  //   expect(newUserState.posts).toContain(DEV.channelId);
+  // });
 }
 
-// Edit or add an action to a comment.
-export const editAction = async (commentId: string, actionType: CommentActionType, desc: string): Promise<void> => {
-    console.log("[editAction] Editing action: ", commentId, actionType, desc);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 200);
-    });
-}
-
-export const deleteAction = async (commentId: string, actionType: CommentActionType): Promise<void> => {
-    console.log("[deleteAction] Deleting action: ", commentId, actionType);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 200);
-    });
-}
-
-export const submitCommentActions = async (commentId: string): Promise<void> => {
-    console.log("[submitCommentActions] Submitting actions for comment (flipping the isSubmitted flag): ", commentId);
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 200);
-    });
-}
+//#endregion test

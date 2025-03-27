@@ -38,7 +38,6 @@ function MainView(props: { userState: UserState }) {
         </div>
 
         <div class="w-64 bg-white border-r border-gray-200 p-4">
-          <h2 class="text-lg font-semibold mb-4">ChannelView</h2>
           <ChannelView channels={channels()} />
         </div>
       </div>

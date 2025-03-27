@@ -1,4 +1,4 @@
-import { For, Setter, Suspense } from "solid-js";
+import { For, Setter } from "solid-js";
 import { Channel } from "../model/Channel";
 import { ChannelId } from "../model/ChannelId";
 import { dbg } from "../dev";

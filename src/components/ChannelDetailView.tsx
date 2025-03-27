@@ -1,9 +1,8 @@
-import { createResource, createSignal, For, Show, Suspense } from "solid-js";
+import { createResource, createSignal, Show } from "solid-js";
 import { api } from "../rpc";
 import type { Channel } from "../model/Channel";
 import { unwrapOr } from "../result";
 import { ChannelId } from "../model/ChannelId";
-import PostItemView from "./PostItemView";
 import { Post } from "../model/Post";
 import { PostId } from "../model/PostId";
 import PostListView from "./PostListView";
@@ -11,7 +10,7 @@ import PostDetailView from "./PostDetailView";
 
 export default function ChannelDetailView(props: { channel: Channel }) {
   const [selectedPostId, setSelectedPostId] = createSignal<PostId | null>(null);
-  const [posts, { mutate, refetch }] = createResource(
+  const [posts] = createResource(
     () => props.channel.id,
     async (channelId: ChannelId) => {
       let posts = unwrapOr(

@@ -1,84 +1,57 @@
 import { createResource, createSignal, For, Show } from "solid-js";
-import { DETAIL_VIEW_TABS, DEFAULT_DETAIL_VIEW_TAB } from "../consts";
-import { SubmitButton } from "./SubmitButton";
-// import { CommentItemView } from "./CommentView";
 import { Post } from "../model/Post";
-import { getDateString } from "../utils";
 import { PostId } from "../model/PostId";
 import { api } from "../rpc";
 import { unwrapOr } from "../result";
+import { dbg } from "../dev";
+import CommentItemView from "./CommentItemView";
+import { CommentWithActions } from "../model/CommentWithActions";
 
-// Show metadata about the post, e.g., summary, cover image, etc.
-function PostMetadataView(prop: { post: Post }) {
-  return (
-    <div class="flex flex-col w-full items-center pb-2">
-      <div class="text-custom12 leading-4 pt-2 pb-4">
-        {/* TODO: ADD TIME */}
-        {/* <span class="font-medium"> */}
-        {/*   {getDateString(prop.post.createdAtCommunityTime)}:{" "} */}
-        {/* </span>{" "} */}
-        {prop.post.summary}
-      </div>
-      <div class="relative w-full max-w-[300px]">
-        <img
-          src={prop.post.thumbnailUrl}
-          alt={prop.post.title}
-          class="w-full h-auto rounded-lg border-1 border-grey-custom1"
-        />
-        <button class="absolute bottom-2 right-2 cursor-pointer group">
-          <div class="w-full h-full relative p-1">
-            <img
-              title="Go to YouTube"
-              src="/iconYouTube.svg"
-              class="w-[28px] h-auto"
-              onClick={() => {
-                console.log("Open URL in new tab: ", prop.post.link);
-                window.open(prop.post.link, "_blank");
-              }}
-            />
-            <span class="absolute inset-0 bg-black rounded-lg opacity-0 group-hover:opacity-20"></span>
-          </div>
-        </button>
-      </div>
-    </div>
-  );
-}
+export type ReactTabName =
+  | "AllReact"
+  | "Reply"
+  | "Like"
+  | "Dislike"
+  | "Delete"
+  | "NoReact";
+
+const ALL_TAB_NAMES: ReactTabName[] = [
+  "AllReact",
+  "Reply",
+  "Like",
+  "Dislike",
+  "Delete",
+  "NoReact",
+];
+
+const DEFAULT_TAB_NAME = "AllReact";
 
 export default function PostDetailView(prop: { post: Post }) {
-  // const [post] = createResource(
-  //   () => APP().selectedPostId(),
-  //   async (postId: PostId) => await APP().fetchPosts,
-  // );
-  const [comments, { mutate, refetch }] = createResource(
+  const [comments] = createResource(
     () => prop.post.id,
     async (postId: PostId) => {
-      const res = await api<Comment[]>({ ListComments: { postId: postId } });
+      const res = await api<CommentWithActions[]>({
+        ListComments: { postId: postId },
+      });
+      dbg(res);
       return unwrapOr(res, []);
     },
     {
       initialValue: [],
     },
   );
-  const [activeTab, setActiveTab] = createSignal(DEFAULT_DETAIL_VIEW_TAB);
+  // const [actionFilter, setActionFilter] = createSignal<null>(null);
+  const [activeTab, setActiveTab] =
+    createSignal<ReactTabName>(DEFAULT_TAB_NAME);
   const [metadataExpanded, setMetadataExpanded] = createSignal(true);
-
-  // const comments = () => {
-  //   if (activeTab() === "Like") {
-  //     return getCommnentsOfActionType(prop.post.id, "Like");
+  // const filtedComment = () => {
+  //   const tab = activeTab();
+  //   if (tab === "AllReact") {
+  //     return comments();
   //   }
-  //   if (activeTab() === "Dislike") {
-  //     return getCommnentsOfActionType(prop.post.id, "Dislike");
-  //   }
-  //   if (activeTab() === "Delete") {
-  //     return getCommnentsOfActionType(prop.post.id, "Delete");
-  //   }
-  //   if (activeTab() === "Reply") {
-  //     return getCommnentsOfActionType(prop.post.id, "Reply");
-  //   }
-  //   if (activeTab() === "NoReact") {
-  //     return getCommentsWithNoAction(prop.post.id);
-  //   }
-  //   return getCommentsWithAnyAction(prop.post.id);
+  //   return comments().filter((c) =>
+  //     c.actions.map((a) => actionName(a)).includes(tab),
+  //   );
   // };
 
   return (
@@ -106,13 +79,13 @@ export default function PostDetailView(prop: { post: Post }) {
       <div class="flex h-fit w-full justify-between px-2 items-center py-2">
         {/* Action Tab Buttons */}
         <div class="flex space-x-2 items-center leading-none">
-          <For each={DETAIL_VIEW_TABS}>
+          <For each={ALL_TAB_NAMES}>
             {(tab) => (
               <button
                 class={`flex items-center justify-center border-1 border-grey-custom1 w-[60px] h-[45px] rounded-lg }`}
                 onClick={() => {
                   if (tab === activeTab()) {
-                    setActiveTab(DEFAULT_DETAIL_VIEW_TAB);
+                    setActiveTab(DEFAULT_TAB_NAME);
                   } else {
                     setActiveTab(tab);
                   }
@@ -146,8 +119,12 @@ export default function PostDetailView(prop: { post: Post }) {
       <div class="w-full flex-1 py-1 overflow-y-auto no-scrollbar">
         <div class="flex flex-col">
           <For each={comments()}>
-            {/* {(comment) => <CommentItemView comment={comment} />} */}
-            <div>CommentItemView</div>
+            {(comment) => (
+              <CommentItemView
+                commentWithActions={comment}
+                activeTab={activeTab()}
+              />
+            )}
           </For>
           <div class="h-[100px]" />
         </div>
@@ -156,6 +133,42 @@ export default function PostDetailView(prop: { post: Post }) {
       {/* {countCommentsWithAnyAction(prop.post.id) > 0 && ( */}
       {/*   <SubmitButton postId={prop.post.id} /> */}
       {/* )} */}
+    </div>
+  );
+}
+
+// Show metadata about the post, e.g., summary, cover image, etc.
+function PostMetadataView(prop: { post: Post }) {
+  return (
+    <div class="flex flex-col w-full items-center pb-2">
+      <div class="text-custom12 leading-4 pt-2 pb-4">
+        {/* TODO: ADD TIME */}
+        {/* <span class="font-medium"> */}
+        {/*   {getDateString(prop.post.createdAtCommunityTime)}:{" "} */}
+        {/* </span>{" "} */}
+        {prop.post.summary}
+      </div>
+      <div class="relative w-full max-w-[300px]">
+        <img
+          src={prop.post.thumbnailUrl}
+          alt={prop.post.title}
+          class="w-full h-auto rounded-lg border-1 border-grey-custom1"
+        />
+        <button class="absolute bottom-2 right-2 cursor-pointer group">
+          <div class="w-full h-full relative p-1">
+            <img
+              title="Go to YouTube"
+              src="/iconYouTube.svg"
+              class="w-[28px] h-auto"
+              onClick={() => {
+                console.log("Open URL in new tab: ", prop.post.link);
+                window.open(prop.post.link, "_blank");
+              }}
+            />
+            <span class="absolute inset-0 bg-black rounded-lg opacity-0 group-hover:opacity-20"></span>
+          </div>
+        </button>
+      </div>
     </div>
   );
 }

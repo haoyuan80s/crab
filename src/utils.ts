@@ -1,3 +1,5 @@
+import { Action } from "./model/Action";
+
 export function timeAgo(date: Date): string {
   const now = new Date();
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
@@ -23,4 +25,14 @@ export function getDateString(date: Date): string {
     day: "numeric",
     year: "numeric",
   });
+}
+
+export function actionName(action: Action): string {
+  if (typeof action === "string") {
+    return action;
+  }
+  if ("Reply" in action) {
+    return "Reply";
+  }
+  throw new Error("Unknown action type");
 }

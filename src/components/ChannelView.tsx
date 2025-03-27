@@ -12,24 +12,20 @@ export default function ChannelView(props: { channels: Channel[] }) {
   };
 
   return (
-    <div class="flex-col">
-      <div class="flex min-h-screen bg-gray-50 text-gray-800">
-        <div class="w-64 bg-white border-r border-gray-200 p-4">
-          <h2 class="text-lg font-semibold mb-4">Channels</h2>
-          <ChannelListView
-            channels={props.channels}
-            selectedChannelId={selectedChannelId()}
-            setSelectedChannelId={setSelectedChannelId}
-          />
-        </div>
-
-        <Show when={channel()}>
-          <div class="flex-1 p-4">
-            <h2 class="text-lg font-semibold mb-4">Channel Detail</h2>
-            <ChannelDetailView channel={channel()} />
-          </div>
-        </Show>
+    <div class="flex min-h-screen bg-gray-50 text-gray-800">
+      <div class="w-64 bg-white border-r border-gray-200 p-4">
+        <ChannelListView
+          channels={props.channels}
+          selectedChannelId={selectedChannelId()}
+          setSelectedChannelId={setSelectedChannelId}
+        />
       </div>
+
+      <Show when={channel()}>
+        <div class="flex-1 p-4">
+          <ChannelDetailView channel={channel()} />
+        </div>
+      </Show>
     </div>
   );
 }

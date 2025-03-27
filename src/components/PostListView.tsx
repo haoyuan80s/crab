@@ -1,5 +1,4 @@
 import { For, Setter } from "solid-js";
-import { api } from "../rpc";
 import { Post } from "../model/Post";
 import PostItemView from "./PostItemView";
 import { PostId } from "../model/PostId";
